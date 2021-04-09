@@ -1,0 +1,142 @@
+
+----------------------New Training----------------------
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 500
+	LR: 0.001
+	gamma: 0.995
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=16, bias=True)
+  (linear2): Linear(in_features=16, out_features=16, bias=True)
+  (linear3): Linear(in_features=16, out_features=16, bias=True)
+  (linear4): Linear(in_features=16, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 300
+--------------------------------------------------------
+Game: 100 -- Average reward: -9.85
+Game: 200 -- Average reward: -9.825
+Game: 300 -- Average reward: -9.666666666666666
+Game: 400 -- Average reward: -9.6125
+Game: 500 -- Average reward: -9.6
+
+----------------------New Training----------------------
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 2000
+	LR: 0.01
+	gamma: 0.995
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=32, bias=True)
+  (linear2): Linear(in_features=32, out_features=32, bias=True)
+  (linear3): Linear(in_features=32, out_features=16, bias=True)
+  (linear4): Linear(in_features=16, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 1000
+--------------------------------------------------------
+Game: 100 -- Average reward: -9.5
+Game: 200 -- Average reward: -9.55
+Game: 300 -- Average reward: -9.616666666666667
+Game: 400 -- Average reward: -9.6
+Game: 500 -- Average reward: -9.57
+Game: 600 -- Average reward: -9.583333333333334
+Game: 700 -- Average reward: -9.57857142857143
+Game: 800 -- Average reward: -9.54375
+Game: 900 -- Average reward: -9.544444444444444
+Game: 1000 -- Average reward: -9.545
+Game: 1100 -- Average reward: -9.577272727272728
+Game: 1200 -- Average reward: -9.570833333333333
+Game: 1300 -- Average reward: -9.569230769230769
+Game: 1400 -- Average reward: -9.589285714285714
+Game: 1500 -- Average reward: -9.59
+Game: 1600 -- Average reward: -9.59375
+Game: 1700 -- Average reward: -9.597058823529412
+Game: 1800 -- Average reward: -9.602777777777778
+Game: 1900 -- Average reward: -9.613157894736842
+
+----------------------New Training----------------------
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 2000
+	LR: 0.01
+	gamma: 0.995
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=64, bias=True)
+  (linear2): Linear(in_features=64, out_features=64, bias=True)
+  (linear4): Linear(in_features=64, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 1000
+--------------------------------------------------------
+Game: 100 -- Average reward: -9.6
+Game: 200 -- Average reward: -9.6
+Game: 300 -- Average reward: -9.583333333333334
+Game: 400 -- Average reward: -9.6125
+Game: 500 -- Average reward: -9.66
+Game: 600 -- Average reward: -9.683333333333334
+Game: 700 -- Average reward: -9.685714285714285
+Game: 800 -- Average reward: -9.70625
+Game: 900 -- Average reward: -9.727777777777778
+Game: 1000 -- Average reward: -9.725
+Game: 1100 -- Average reward: -9.75
+Game: 1200 -- Average reward: -9.770833333333334
+Game: 1300 -- Average reward: -9.776923076923078
+Game: 1400 -- Average reward: -9.778571428571428
+Game: 1500 -- Average reward: -9.78
+Game: 1600 -- Average reward: -9.7875
+Game: 1700 -- Average reward: -9.794117647058824
+Game: 1800 -- Average reward: -9.805555555555555
+Game: 1900 -- Average reward: -9.810526315789474
+Game: 2000 -- Average reward: -9.82
+Game: 2100 -- Average reward: -9.823809523809524
+Game: 2200 -- Average reward: -9.829545454545455
+Game: 2300 -- Average reward: -9.826086956521738
+Game: 2400 -- Average reward: -9.829166666666667
+Game: 2500 -- Average reward: -9.832
+Game: 2600 -- Average reward: -9.836538461538462
+Game: 2700 -- Average reward: -9.835185185185185
+Game: 2800 -- Average reward: -9.833928571428572
+Game: 2900 -- Average reward: -9.829310344827586
+Game: 3000 -- Average reward: -9.825
+Game: 3100 -- Average reward: -9.82741935483871
+Game: 3200 -- Average reward: -9.828125
+Game: 3300 -- Average reward: -9.83030303030303
+Game: 3400 -- Average reward: -9.827941176470588
+Game: 3500 -- Average reward: -9.825714285714286
+Game: 3600 -- Average reward: -9.827777777777778
+Game: 3700 -- Average reward: -9.82972972972973
+Game: 3800 -- Average reward: -9.832894736842105
+Game: 3900 -- Average reward: -9.834615384615384
+Game: 4000 -- Average reward: -9.8375
+Game: 4100 -- Average reward: -9.836585365853658
+Game: 4200 -- Average reward: -9.838095238095239
+Game: 4300 -- Average reward: -9.837209302325581
+Game: 4400 -- Average reward: -9.840909090909092
+Game: 4500 -- Average reward: -9.84
+Game: 4600 -- Average reward: -9.842391304347826
+Game: 4700 -- Average reward: -9.842553191489362
+Game: 4800 -- Average reward: -9.839583333333334
+Game: 4900 -- Average reward: -9.841836734693878
+Game: 5000 -- Average reward: -9.844
+Game: 5100 -- Average reward: -9.845098039215687
+
+----------------------New Training----------------------
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 2000
+	LR: 0.01
+	gamma: 0.995
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=64, bias=True)
+  (linear2): Linear(in_features=64, out_features=64, bias=True)
+  (linear4): Linear(in_features=64, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 1000
+--------------------------------------------------------
+Game: 100 -- Average reward: -9.35
