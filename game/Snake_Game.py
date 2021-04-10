@@ -38,14 +38,14 @@ class Game(object):
         # Hard      ->  40
         # Harder    ->  60
         # Impossible->  120
-        self.difficulty = 25
+        self.difficulty = 120
         self.gameOver = False
         self.gameLength = 0
         self.total_reward = 0
 
         # Window size
-        self.frame_size_x = 240
-        self.frame_size_y = 240
+        self.frame_size_x = 480
+        self.frame_size_y = 480
 
         # Checks for errors encountered
         self.check_errors = pygame.init()
@@ -94,20 +94,35 @@ class Game(object):
                 self.move(directions[i])
                 break
 
+        self.doStuff()
+
+        self.show_score(1, self.white, 'consolas', 20)
+        # Refresh game screen
+        pygame.display.update()
+        # Refresh rate
+        self.fps_controller.tick(self.difficulty)
+
+        self.total_reward += self.reward
+        self.overal_reward += self.reward
+        self.gameLength += 0.1
+
+        return self.reward, self.gameOver, self.score
+
+    def doStuff(self):
         # Snake body growing mechanism
         self.snake_body.insert(0, list(self.snake_pos))
         if self.snake_pos[0] == self.food_pos[0] and self.snake_pos[1] == self.food_pos[1]:
             self.score += 5
             self.food_spawn = False
 
-            self.reward += 5
+            self.reward += 10
         else:
             self.snake_body.pop()
 
         # Spawning food on the screen
         if not self.food_spawn:
             self.food_pos = [random.randrange(1, (self.frame_size_x // 10)) * 10,
-                        random.randrange(1, (self.frame_size_y // 10)) * 10]
+                             random.randrange(1, (self.frame_size_y // 10)) * 10]
         self.food_spawn = True
 
         # GFX
@@ -131,18 +146,6 @@ class Game(object):
         for block in self.snake_body[1:]:
             if self.snake_pos[0] == block[0] and self.snake_pos[1] == block[1]:
                 self.game_over()
-
-        self.show_score(1, self.white, 'consolas', 20)
-        # Refresh game screen
-        pygame.display.update()
-        # Refresh rate
-        self.fps_controller.tick(self.difficulty)
-
-        self.total_reward += self.reward
-        self.overal_reward += self.reward
-        self.gameLength += 0.1
-
-        return self.reward, self.gameOver, self.score
 
     def isDanger(self, posX, posY):
         # Game Over conditions

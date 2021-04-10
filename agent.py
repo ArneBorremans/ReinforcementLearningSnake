@@ -5,10 +5,10 @@ from collections import deque
 from model import Linear_QNet, QTrainer
 from game.Snake_Game import Game
 
-MAX_MEMORY = 100000
-MAX_MEMORY_INITIAL = 20000
-BATCH_SIZE = 2000
-LR = 0.01
+MAX_MEMORY = 100_000
+MAX_MEMORY_INITIAL = 20_000
+BATCH_SIZE = 1000
+LR = 0.001
 
 
 class Agent:
@@ -16,34 +16,34 @@ class Agent:
     def __init__(self):
         self.n_games = 0  # number of games / epochs
         self.epsilon = 0  # randomness
-        self.gamma = 0.995  # discount rate
+        self.gamma = 0.9  # discount rate
         self.memory = deque(maxlen=MAX_MEMORY)  # popleft()
-        self.initial_memory = deque(maxlen=MAX_MEMORY_INITIAL)
-        self.model = Linear_QNet(11, 64, 64, 4)
+        # self.initial_memory = deque(maxlen=MAX_MEMORY_INITIAL)
+        self.model = Linear_QNet(11, 256, 128, 128, 4)
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
 
         self.initial_epsilon = 1
         self.final_epsilon = 0.1
-        self.num_decay_epochs = 1000
+        self.num_decay_epochs = 100
         self.remember_counter = 0
 
     def get_state(self, game):
         return game.get_state()
 
     def remember(self, state, action, reward, next_state, done):
-        if self.remember_counter < 20000:
-            self.initial_memory.append((state, action, reward, next_state, done))
-            self.remember_counter += 1
-        else:
-            self.memory.append((state, action, reward, next_state, done))  # popleft if MAX_MEMORY is reached
+        # if self.remember_counter < 20000:
+        #     self.initial_memory.append((state, action, reward, next_state, done))
+        #     self.remember_counter += 1
+        # else:
+        self.memory.append((state, action, reward, next_state, done))  # popleft if MAX_MEMORY is reached
 
     def train_long_memory(self):
-        combined_memory = self.initial_memory + self.memory
+        # combined_memory = self.initial_memory + self.memory
 
-        if len(combined_memory) > BATCH_SIZE:
-            mini_sample = random.sample(combined_memory, BATCH_SIZE)  # list of tuples
+        if len(self.memory) > BATCH_SIZE:
+            mini_sample = random.sample(self.memory, BATCH_SIZE)  # list of tuples
         else:
-            mini_sample = combined_memory
+            mini_sample = self.memory
 
         states, actions, rewards, next_states, dones = zip(*mini_sample)
         self.trainer.train_step(states, actions, rewards, next_states, dones)
@@ -63,7 +63,6 @@ class Agent:
 
         final_move = [0, 0, 0, 0]
 
-
         randomNumber = random.random()
 
         if randomNumber <= self.epsilon:
@@ -73,8 +72,7 @@ class Agent:
             state0 = torch.tensor(state, dtype=torch.float)
             prediction = self.model(state0)
             move = torch.argmax(prediction).item()
-            final_move[move-1] = 1
-
+            final_move[move] = 1
         return final_move
 
 
