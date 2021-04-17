@@ -449,6 +449,8 @@ Game: 800 -- Average reward: 26.075
 Game: 900 -- Average reward: 26.966666666666665
 
 
+
+
 ----------------------New Training----------------------
 Parameters:
 	MAX_MEMORY: 100000
@@ -463,4 +465,6 @@ Parameters:
 	final_epsilon: 0.1
 	num_decay_epochs: 100
 --------------------------------------------------------
-Game: 100 -- Average reward: -5.4
+Game: 100 -- Average reward: -5.3
+Game: 200 -- Average reward: 10.9
+Game: 300 -- Average reward: 20.833333333333332
