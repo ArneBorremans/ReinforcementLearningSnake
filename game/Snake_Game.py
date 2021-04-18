@@ -156,7 +156,7 @@ class Game(object):
             return True
         # Touching the snake body
         for block in self.snake_body[1:]:
-            if self.snake_pos[0] == block[0] and self.snake_pos[1] == block[1]:
+            if posX == block[0] and posY == block[1]:
                 return True
 
     def move(self, direction):
@@ -210,10 +210,10 @@ class Game(object):
             if self.isDanger(posX, posY + 10):
                 state[0] = 1
             # Left
-            if self.isDanger(posX - 10, posY):
+            if self.isDanger(posX + 10, posY):
                 state[1] = 1
             # Right
-            if self.isDanger(posX + 10, posY):
+            if self.isDanger(posX - 10, posY):
                 state[2] = 1
 
         elif self.direction == "LEFT":

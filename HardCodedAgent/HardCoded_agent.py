@@ -2,6 +2,7 @@ from random import Random, randint
 
 from Snake_Game import Game
 
+
 class Agent:
     def __init__(self):
         self.n_games = 0  # number of games / epochs
@@ -13,7 +14,8 @@ class Agent:
 
         direction = state[3:7]
         directionString = ""
-        directions = ["UP", "DOWN", "LEFT", "RIGHT"]
+        directions = ["UP", "RIGHT", "DOWN", "LEFT"]
+        directionsStatic = ["UP", "RIGHT", "DOWN", "LEFT"]
 
         if direction == [1, 0, 0, 0]:
             directionString = "UP"
@@ -24,30 +26,39 @@ class Agent:
         elif direction == [0, 0, 0, 1]:
             directionString = "RIGHT"
 
-        print(directionString)
-
-        print(state)
-
         # STATE:
         # 3 bits: DANGER STRAIGHT, LEFT, RIGHT
         # 4 bits: GOING UP, DOWN, LEFT, RIGHT
         # 4 bits: FOOD_X < SNAKE_X, FOOD_X > SNAKE_X, FOOD_Y < SNAKE_Y, FOOD_Y > SNAKE_Y
 
-        final_move_string = "UP"
+        # final_move_string = "UP"
 
-        if state[7] == 1:
+        # remove opposite direction
+        directions.remove(directionsStatic[(directionsStatic.index(directionString) + 2) % 4])
+
+        # remove the dangers
+        danger = state[0:3]
+        if danger[0] == 1:
+            directions.remove(directionString)
+        if danger[1] == 1:
+            directions.remove(directionsStatic[directionsStatic.index(directionString) - 1])
+        if danger[2] == 1:
+            directions.remove(directionsStatic[(directionsStatic.index(directionString) + 1) % 4])
+        if danger == [1, 1, 1]:
+            directions.append(directionString)
+
+        # Decide the next move
+        if (state[7] == 1) & ("LEFT" in directions):
             final_move_string = "LEFT"
-        elif state[8] == 1:
+        elif (state[8] == 1) & ("RIGHT" in directions):
             final_move_string = "RIGHT"
         else:
-            if state[9] == 1:
+            if (state[9] == 1) & ("UP" in directions):
                 final_move_string = "UP"
-            if state[10] == 1:
+            elif (state[10] == 1) & ("DOWN" in directions):
                 final_move_string = "DOWN"
-
-        if final_move_string == directionString:
-            directions.remove(directionString)
-            final_move_string = directions[randint(0, 2)]
+            else:
+                final_move_string = directions[0]
 
         final_move = [0, 0, 0, 0]
 
@@ -61,6 +72,7 @@ class Agent:
             final_move = [0, 0, 0, 1]
 
         return final_move
+
 
 def play():
     total_score = 0
@@ -105,6 +117,7 @@ def play():
                 print('Average reward:', average_reward, "(+", difference, ")")
             else:
                 print('Average reward:', average_reward, "(-", abs(difference), ")")
+
 
 if __name__ == '__main__':
     play()
