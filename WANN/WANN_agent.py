@@ -3,23 +3,79 @@ import neat
 import os
 import visualize
 
-# 2-input XOR inputs and expected outputs.
-xor_inputs = [(0.0, 0.0), (0.0, 1.0), (1.0, 0.0), (1.0, 1.0)]
-xor_outputs = [   (0.0,),     (1.0,),     (1.0,),     (0.0,)]
+from Snake_Game import Game
+
+POPULATION = 150
+
+class Agent:
+    def __init__(self, net):
+        self.n_games = 0  # number of games / epochs
+        self.net = net
+
+    def get_state(self, game):
+        return game.get_state()
+
+    def get_action(self, state):
+        move = [0, 0, 0, 0]
+        net_output = self.net.activate(state)
+        move[net_output.index(max(net_output))] = 1
+        return move
 
 def eval_genomes(genomes, config):
+    snake_in_generation = 1
+
     for genome_id, genome in genomes:
-        genome.fitness = 4.0
+        print("Snake: ", snake_in_generation, "/", POPULATION)
+
+        genome.fitness = 0
         net = neat.nn.FeedForwardNetwork.create(genome, config)
-        for xi, xo in zip(xor_inputs, xor_outputs):
-            output = net.activate(xi)
-            genome.fitness -= (output[0] - xo[0]) ** 2
+        play(net, genome)
+
+        snake_in_generation += 1
+
+def play(net, genome):
+    print('creating agent')
+    agent = Agent(net)
+    print('creating game')
+    game = Game()
+    print('initializing game')
+
+    time_out = 0
+
+    while True:
+        # get old state
+        state_old = agent.get_state(game)
+
+        # get move
+        final_move = agent.get_action(state_old)
+
+        # perform move and get new state
+        reward, done, score = game.play_step(final_move)
+        # state_new = agent.get_state(game)
+
+        time_out += 1
+        if time_out == 200:
+            game.game_over()
+
+        if reward == 10:
+            genome.fitness += 10
+            time_out = 0
+        if reward == -10:
+            genome.fitness -= 10
+            time_out = 0
+
+        if done:
+            # train long memory, plot result
+            game.reset()
+            break
+
 
 def run(config_file):
     # Load configuration.
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          config_file)
+
     print(config.save("config_output"))
 
     # Create the population, which is the top-level object for a NEAT run.
@@ -32,7 +88,7 @@ def run(config_file):
     p.add_reporter(neat.Checkpointer(5))
 
     # Run for up to 300 generations.
-    winner = p.run(eval_genomes, 300)
+    winner = p.run(eval_genomes, POPULATION)
 
     # Display the winning genome.
     print('\nBest genome:\n{!s}'.format(winner))
@@ -40,9 +96,7 @@ def run(config_file):
     # Show output of the most fit genome against training data.
     print('\nOutput:')
     winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
-    for xi, xo in zip(xor_inputs, xor_outputs):
-        output = winner_net.activate(xi)
-        print("input {!r}, expected output {!r}, got {!r}".format(xi, xo, output))
+    print(winner_net)
 
     node_names = {-1: 'A', -2: 'B', 0: 'A XOR B'}
     visualize.draw_net(config, winner, True, node_names=node_names)

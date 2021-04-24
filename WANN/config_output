@@ -2,7 +2,7 @@
 # or the experiment itself.  This is the only required section.
 [NEAT]
 fitness_criterion      = max
-fitness_threshold      = 3.9
+fitness_threshold      = 100.0
 no_fitness_termination = False
 pop_size               = 150
 reset_on_extinction    = False
@@ -35,8 +35,8 @@ feed_forward                       = True
 node_add_prob                      = 0.2
 node_delete_prob                   = 0.2
 num_hidden                         = 0
-num_inputs                         = 2
-num_outputs                        = 1
+num_inputs                         = 11
+num_outputs                        = 4
 response_init_mean                 = 1.0
 response_init_stdev                = 0.0
 response_init_type                 = gaussian
