@@ -2,8 +2,10 @@ import torch
 import random
 from collections import deque
 
+from Snake_Game import Game
+from datetime import datetime
+
 from model import Linear_QNet, QTrainer
-from game.Snake_Game import Game
 
 MAX_MEMORY = 100_000
 MAX_MEMORY_INITIAL = 20_000
@@ -91,10 +93,11 @@ def train():
 
     file = open("Statistics.txt", "a")
     output = "\n----------------------New Training----------------------\n" \
+             "{}\n" \
              "Parameters:\n\tMAX_MEMORY: {}\n\tMAX_MEMORY_INITIAL: {}\n\tBATCH_SIZE: {}\n\tLR: {}\n\tgamma: {}" \
              "\n\tmodel: {}\n\tfinal_epsilon: {}\n\tnum_decay_epochs: {}\n" \
              "--------------------------------------------------------\n"\
-        .format(MAX_MEMORY, MAX_MEMORY_INITIAL, BATCH_SIZE, LR, agent.gamma, agent.model, agent.final_epsilon,
+        .format(datetime.now() ,MAX_MEMORY, MAX_MEMORY_INITIAL, BATCH_SIZE, LR, agent.gamma, agent.model, agent.final_epsilon,
                 agent.num_decay_epochs)
     file.write(output)
     file.close()
@@ -153,6 +156,62 @@ def train():
             # plot_mean_scores.append(mean_score)
             # plot(plot_scores, plot_mean_scores)
 
+def loadModelAndPlay(path):
+    # Load in the model
+    model = Linear_QNet(11, 256, 128, 128, 4)
+    print(model.load_state_dict(torch.load(path)))
+    print(model.eval())
+
+    plot_scores = []
+    plot_mean_scores = []
+    total_score = 0
+    record = 0
+    print('creating agent')
+    agent = Agent()
+    print('creating game')
+    game = Game()
+    print('initializing game')
+    average_reward = 0
+    difference = 0
+
+    while True:
+        # get old state
+        current_state = agent.get_state(game)
+
+        # get move
+        final_move = [0, 0, 0, 0]
+
+        state0 = torch.tensor(current_state, dtype=torch.float)
+        prediction = model.forward(state0)
+        move = torch.argmax(prediction).item()
+        final_move[move] = 1
+
+        # perform move and get new state
+        reward, done, score = game.play_step(final_move)
+
+        if done:
+            # train long memory, plot result
+            gameLength = game.gameLength
+            totalReward = game.total_reward
+            game.reset()
+            agent.n_games += 1
+
+            difference = (game.overal_reward / agent.n_games) - average_reward
+            average_reward = game.overal_reward / agent.n_games
+
+            print("----------------------------- Game:", agent.n_games, "-----------------------------")
+            print("Survived for: ", gameLength)
+            print("Total reward: ", totalReward)
+
+            print('Score:', score, 'Record:', record)
+            if (difference >= 0):
+                print('Average reward:', average_reward, "(+", difference, ")")
+            else:
+                print('Average reward:', average_reward, "(-", abs(difference), ")")
+
+            plot_scores.append(totalReward)
+            total_score += totalReward
 
 if __name__ == '__main__':
-    train()
+    # train()
+    loadModelAndPlay("D:\Documenten\PythonPrograms\Snake-Reinforcement-Learning\model\model 1 hidden 256\model.pth")

@@ -563,3 +563,19 @@ Parameters:
 	final_epsilon: 0.1
 	num_decay_epochs: 100
 --------------------------------------------------------
+----------------------New Training----------------------
+2021-04-25 11:16:39.778587
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+Game: 100 -- Average reward: -3.5
