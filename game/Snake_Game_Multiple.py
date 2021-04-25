@@ -3,34 +3,39 @@ Snake Eater
 Made with PyGame
 """
 
-import pygame, sys, time, random
+import pygame, sys, random
 
 
 class Game(object):
     def __init__(self, amount_of_snakes):
         pygame.init()
-        self.overal_reward = 0
         self.amount_of_snakes = amount_of_snakes
         self.reset()
 
     # Game Over
-    def game_over(self):
+    def game_over(self, snake):
+        self.rewards[snake] -= 10
+        self.game_overs[snake] = True
+
+    def next_generation(self):
         self.game_window.fill(self.black)
         pygame.display.flip()
-        self.reward -= 10
-        self.gameOver = True
 
     # Score
-    def show_score(self, choice, color, font, size):
-        score_font = pygame.font.SysFont(font, size)
-        score_surface = score_font.render('Score : ' + str(self.score), True, color)
-        score_rect = score_surface.get_rect()
-        if choice == 1:
-            score_rect.midtop = (self.frame_size_x/10, 15)
-        else:
-            score_rect.midtop = (self.frame_size_x/2, self.frame_size_y/1.25)
-        self.game_window.blit(score_surface, score_rect)
-        # pygame.display.flip()
+    # def show_score(self, choice, color, font, size):
+    #     score_font = pygame.font.SysFont(font, size)
+    #     score_surface = score_font.render('Score : ' + str(self.scores), True, color)
+    #     score_rect = score_surface.get_rect()
+    #     if choice == 1:
+    #         score_rect.midtop = (self.frame_size_x/10, 15)
+    #     else:
+    #         score_rect.midtop = (self.frame_size_x/2, self.frame_size_y/1.25)
+    #     self.game_window.blit(score_surface, score_rect)
+    #     # pygame.display.flip()
+
+    def random_color(self):
+        color = [random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)]
+        return pygame.Color(color)
 
     def reset(self):
         # Difficulty settings
@@ -40,9 +45,7 @@ class Game(object):
         # Harder    ->  60
         # Impossible->  120
         self.difficulty = 120
-        self.gameOver = False
         self.gameLength = 0
-        self.total_reward = 0
 
         # Window size
         self.frame_size_x = 480
@@ -55,8 +58,8 @@ class Game(object):
         if self.check_errors[1] > 0:
             print(f'[!] Had {self.check_errors[1]} errors when initialising game, exiting...')
             sys.exit(-1)
-        else:
-            print('[+] Game successfully initialised')
+        # else:
+            # print('[+] Game successfully initialised')
 
         # Initialise game window
         pygame.display.set_caption('Snake Eater')
@@ -72,87 +75,94 @@ class Game(object):
         # FPS (frames per second) controller
         self.fps_controller = pygame.time.Clock()
 
+        self.snake_positions = []
+        self.snake_bodies = []
+        self.directions = []
+        self.change_tos = []
+        self.food_positions = []
+        self.food_spawns = []
+        self.scores = []
+        self.game_overs = []
+        self.rewards = []
+        self.colors = []
+
         # Game variable
         for i in range(0, self.amount_of_snakes):
-            self.snake_positions = []
-            self.snake_bodies = []
-
             self.snake_positions.append([100, 50])
             self.snake_bodies.append([[100, 50], [100 - 10, 50], [100 - (2 * 10), 50]])
-
-        self.food_pos = [random.randrange(1, (self.frame_size_x // 10)) * 10, random.randrange(1, (self.frame_size_y // 10)) * 10]
-        self.food_spawn = True
-
-        self.direction = 'RIGHT'
-        self.change_to = self.direction
-
-        self.score = 0
+            self.directions.append('RIGHT')
+            self.change_tos.append('RIGHT')
+            self.food_positions.append([random.randrange(1, (self.frame_size_x // 10)) * 10, random.randrange(1, (self.frame_size_y // 10)) * 10])
+            self.food_spawns.append(True)
+            self.scores.append(0)
+            self.game_overs.append(False)
+            self.rewards.append(0)
+            self.colors.append(self.random_color())
 
     def play_step(self, action, snake):
         # Main logic
-        self.reward = 0
+        self.rewards[snake] = 0
 
         directions = ["UP", "DOWN", "LEFT", "RIGHT"]
 
         for i in range(0, 4):
             if action[i] == 1:
-                self.move(directions[i])
+                self.move(directions[i], snake)
                 break
 
         self.doStuff(snake)
 
-        self.show_score(1, self.white, 'consolas', 20)
+        # self.show_score(1, self.white, 'consolas', 20)
         # Refresh game screen
         pygame.display.update()
-        # Refresh rate
-        self.fps_controller.tick(self.difficulty)
 
-        self.total_reward += self.reward
-        self.overal_reward += self.reward
         self.gameLength += 0.1
 
-        return self.reward, self.gameOver, self.score
+        return self.rewards[snake], self.game_overs[snake], self.scores[snake]
 
     def doStuff(self, snake):
         # Snake body growing mechanism
         self.snake_bodies[snake].insert(0, list(self.snake_positions[snake]))
-        if self.snake_positions[snake][0] == self.food_pos[0] and self.snake_positions[snake][1] == self.food_pos[1]:
-            self.score += 5
-            self.food_spawn = False
+        if self.snake_positions[snake][0] == self.food_positions[snake][0] and self.snake_positions[snake][1] == self.food_positions[snake][1]:
+            self.scores[snake] += 5
+            self.food_spawns[snake] = False
 
-            self.reward += 10
+            self.rewards[snake] += 10
         else:
             self.snake_bodies[snake].pop()
 
         # Spawning food on the screen
-        if not self.food_spawn:
-            self.food_pos = [random.randrange(1, (self.frame_size_x // 10)) * 10,
+        if not self.food_spawns[snake]:
+            self.food_positions[snake] = [random.randrange(1, (self.frame_size_x // 10)) * 10,
                              random.randrange(1, (self.frame_size_y // 10)) * 10]
-        self.food_spawn = True
+        self.food_spawns[snake] = True
 
         # GFX
         self.game_window.fill(self.black)
-        for pos in self.snake_bodies[snake]:
-            # Snake body
-            # .draw.rect(play_surface, color, xy-coordinate)
-            # xy-coordinate -> .Rect(x, y, size_x, size_y)
-            pygame.draw.rect(self.game_window, self.green, pygame.Rect(pos[0], pos[1], 10, 10))
+        for i in range(0, self.amount_of_snakes):
+            if not self.game_overs[i]:
+                for pos in self.snake_bodies[i]:
+                    # Snake body
+                    # .draw.rect(play_surface, color, xy-coordinate)
+                    # xy-coordinate -> .Rect(x, y, size_x, size_y)
+                    pygame.draw.rect(self.game_window, self.colors[i], pygame.Rect(pos[0], pos[1], 10, 10))
+                    # Snake food
+                pygame.draw.rect(self.game_window, self.colors[i],
+                                 pygame.Rect(self.food_positions[i][0], self.food_positions[i][1], 10, 10))
 
-        # Snake food
-        pygame.draw.rect(self.game_window, self.white, pygame.Rect(self.food_pos[0], self.food_pos[1], 10, 10))
 
         # Game Over conditions
         # Getting out of bounds
-        if self.snake_positions[0] < 0 or self.snake_positions[0] > self.frame_size_x - 10:
-            self.game_over()
-        if self.snake_positions[1] < 0 or self.snake_positions[1] > self.frame_size_y - 10:
-            self.game_over()
+        if self.snake_positions[snake][0] < 0 or self.snake_positions[snake][0] > self.frame_size_x - 10:
+            self.game_over(snake)
+        if self.snake_positions[snake][1] < 0 or self.snake_positions[snake][1] > self.frame_size_y - 10:
+            self.game_over(snake)
         # Touching the snake body
-        for block in self.snake_bodies[1:]:
-            if self.snake_positions[0] == block[0] and self.snake_positions[1] == block[1]:
-                self.game_over()
+        for block in self.snake_bodies[snake][1:]:
+            if self.snake_positions[snake][0] == block[0] and self.snake_positions[snake][1] == block[1]:
+                self.game_over(snake)
 
-    def isDanger(self, posX, posY):
+    def isDanger(self, posX, posY, snake):
         # Game Over conditions
         # Getting out of bounds
         if posX < 0 or posX > self.frame_size_x - 10:
@@ -160,104 +170,104 @@ class Game(object):
         if posY < 0 or posY > self.frame_size_y - 10:
             return True
         # Touching the snake body
-        for block in self.snake_bodies[1:]:
+        for block in self.snake_bodies[snake][1:]:
             if posX == block[0] and posY == block[1]:
                 return True
 
-    def move(self, direction):
-        self.change_to = direction
+    def move(self, direction, snake):
+        self.change_tos[snake] = direction
 
         # Making sure the snake cannot move in the opposite direction instantaneously
-        if self.change_to == 'UP' and self.direction != 'DOWN':
-            self.direction = 'UP'
-        if self.change_to == 'DOWN' and self.direction != 'UP':
-            self.direction = 'DOWN'
-        if self.change_to == 'LEFT' and self.direction != 'RIGHT':
-            self.direction = 'LEFT'
-        if self.change_to == 'RIGHT' and self.direction != 'LEFT':
-            self.direction = 'RIGHT'
+        if self.change_tos[snake] == 'UP' and self.directions[snake] != 'DOWN':
+            self.directions[snake] = 'UP'
+        if self.change_tos[snake] == 'DOWN' and self.directions[snake] != 'UP':
+            self.directions[snake] = 'DOWN'
+        if self.change_tos[snake] == 'LEFT' and self.directions[snake] != 'RIGHT':
+            self.directions[snake] = 'LEFT'
+        if self.change_tos[snake] == 'RIGHT' and self.directions[snake] != 'LEFT':
+            self.directions[snake] = 'RIGHT'
 
         # Moving the snake
-        if self.direction == 'UP':
-            self.snake_pos[1] -= 10
-        if self.direction == 'DOWN':
-            self.snake_pos[1] += 10
-        if self.direction == 'LEFT':
-            self.snake_pos[0] -= 10
-        if self.direction == 'RIGHT':
-            self.snake_pos[0] += 10
+        if self.directions[snake] == 'UP':
+            self.snake_positions[snake][1] -= 10
+        if self.directions[snake] == 'DOWN':
+            self.snake_positions[snake][1] += 10
+        if self.directions[snake] == 'LEFT':
+            self.snake_positions[snake][0] -= 10
+        if self.directions[snake] == 'RIGHT':
+            self.snake_positions[snake][0] += 10
 
-    def get_state(self):
-        posX = self.snake_pos[0]
-        posY = self.snake_pos[1]
+    def get_state(self, snake):
+        posX = self.snake_positions[snake][0]
+        posY = self.snake_positions[snake][1]
 
         state = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         # Calculate Danger
         # Convert direction
-        if self.direction == "UP":
+        if self.directions[snake] == "UP":
             state[3] = 1
 
             # Straight
-            if self.isDanger(posX, posY - 10):
+            if self.isDanger(posX, posY - 10, snake):
                 state[0] = 1
             # Left
-            if self.isDanger(posX - 10, posY):
+            if self.isDanger(posX - 10, posY, snake):
                 state[1] = 1
             # Right
-            if self.isDanger(posX + 10, posY):
+            if self.isDanger(posX + 10, posY, snake):
                 state[2] = 1
 
-        elif self.direction == "DOWN":
+        elif self.directions[snake] == "DOWN":
             state[4] = 1
 
             # Straight
-            if self.isDanger(posX, posY + 10):
+            if self.isDanger(posX, posY + 10, snake):
                 state[0] = 1
             # Left
-            if self.isDanger(posX + 10, posY):
+            if self.isDanger(posX + 10, posY, snake):
                 state[1] = 1
             # Right
-            if self.isDanger(posX - 10, posY):
+            if self.isDanger(posX - 10, posY, snake):
                 state[2] = 1
 
-        elif self.direction == "LEFT":
+        elif self.directions[snake] == "LEFT":
             state[5] = 1
 
             # Straight
-            if self.isDanger(posX - 10, posY):
+            if self.isDanger(posX - 10, posY, snake):
                 state[0] = 1
             # Left
-            if self.isDanger(posX, posY + 10):
+            if self.isDanger(posX, posY + 10, snake):
                 state[1] = 1
             # Right
-            if self.isDanger(posX, posY - 10):
+            if self.isDanger(posX, posY - 10, snake):
                 state[2] = 1
 
-        elif self.direction == "RIGHT":
+        elif self.directions[snake] == "RIGHT":
             state[6] = 1
 
             # Straight
-            if self.isDanger(posX + 10, posY):
+            if self.isDanger(posX + 10, posY, snake):
                 state[0] = 1
             # Left
-            if self.isDanger(posX, posY - 10):
+            if self.isDanger(posX, posY - 10, snake):
                 state[1] = 1
             # Right
-            if self.isDanger(posX, posY + 10):
+            if self.isDanger(posX, posY + 10, snake):
                 state[2] = 1
 
         # Calculate food position relative to snake position
-        if self.food_pos[0] < self.snake_pos[0]:
+        if self.food_positions[snake][0] < self.snake_positions[snake][0]:
             state[7] = 1
 
-        if self.food_pos[0] > self.snake_pos[0]:
+        if self.food_positions[snake][0] > self.snake_positions[snake][0]:
             state[8] = 1
 
-        if self.food_pos[1] < self.snake_pos[1]:
+        if self.food_positions[snake][1] < self.snake_positions[snake][1]:
             state[9] = 1
 
-        if self.food_pos[1] > self.snake_pos[1]:
+        if self.food_positions[snake][1] > self.snake_positions[snake][1]:
             state[10] = 1
 
         return state

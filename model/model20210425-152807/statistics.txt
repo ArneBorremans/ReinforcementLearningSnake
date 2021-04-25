@@ -1,0 +1,29 @@
+
+----------------------New Training----------------------
+2021-04-25 15:28:07.414099 ---- Folder: model20210425-152807
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+Game: 100 -- Average reward: -3.8
+Game: 200 -- Average reward: 17.05
+Game: 300 -- Average reward: 32.233333333333334
+Game: 400 -- Average reward: 44.025
+Game: 500 -- Average reward: 53.2
+Game: 600 -- Average reward: 57.95
+Game: 700 -- Average reward: 60.32857142857143
+Game: 800 -- Average reward: 61.0625
+Game: 900 -- Average reward: 62.65555555555556
+Game: 1000 -- Average reward: 63.1
+Game: 1100 -- Average reward: 63.0
+Game: 1200 -- Average reward: 61.891666666666666
+Game: 1300 -- Average reward: 61.3
