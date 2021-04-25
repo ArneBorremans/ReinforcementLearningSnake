@@ -579,3 +579,308 @@ Parameters:
 	num_decay_epochs: 100
 --------------------------------------------------------
 Game: 100 -- Average reward: -3.5
+
+----------------------New Training----------------------
+2021-04-25 12:19:45.370770
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 12:20:42.645856
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+  (linear5): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 12:20:56.243140
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+  (linear5): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 12:21:15.181560
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 12:26:42.198248
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 12:27:55.255821
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 12:28:26.462962
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 12:30:40.015693
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 13:07:41.380791
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 13:08:36.485977
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 13:10:49.023535
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 13:12:10.400388
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 13:13:52.636247
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=256, bias=True)
+  (linear3): Linear(in_features=256, out_features=256, bias=True)
+  (linear4): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 13:16:55.014414
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 13:18:36.085226
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 13:20:29.553011
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+
+----------------------New Training----------------------
+2021-04-25 13:23:07.143210
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=256, bias=True)
+  (linear2): Linear(in_features=256, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+Game: 100 -- Average reward: -4.2
+Game: 200 -- Average reward: 19.65
+Game: 300 -- Average reward: 29.5
+Game: 100 -- Average reward: -7.7
+Game: 200 -- Average reward: 14.9
+Game: 300 -- Average reward: 30.7
+Game: 400 -- Average reward: 39.925

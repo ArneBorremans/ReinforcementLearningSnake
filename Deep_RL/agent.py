@@ -1,11 +1,13 @@
+import os
+
 import torch
 import random
 from collections import deque
 
 from Snake_Game import Game
-from datetime import datetime
-
+import time
 from model import Linear_QNet, QTrainer
+from datetime import datetime
 
 MAX_MEMORY = 100_000
 MAX_MEMORY_INITIAL = 20_000
@@ -15,13 +17,14 @@ LR = 0.001
 
 class Agent:
 
-    def __init__(self):
+    def __init__(self, model_layers):
         self.n_games = 0  # number of games / epochs
         self.epsilon = 0  # randomness
         self.gamma = 0.9  # discount rate
         self.memory = deque(maxlen=MAX_MEMORY)  # popleft()
         # self.initial_memory = deque(maxlen=MAX_MEMORY_INITIAL)
-        self.model = Linear_QNet(11, 256, 128, 128, 4)
+        self.model = Linear_QNet(model_layers)
+        print(self.model)
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
 
         self.initial_epsilon = 1
@@ -78,26 +81,32 @@ class Agent:
         return final_move
 
 
-def train():
+def train(model_layers):
     plot_scores = []
     plot_mean_scores = []
     total_score = 0
     record = 0
     print('creating agent')
-    agent = Agent()
+    agent = Agent(model_layers)
     print('creating game')
     game = Game()
     print('initializing game')
     average_reward = 0
     difference = 0
 
-    file = open("Statistics.txt", "a")
+    save_path = "model" + time.strftime("%Y%m%d-%H%M%S")
+
+    model_folder_path = '../model/' + save_path
+    if not os.path.exists(model_folder_path):
+        os.makedirs(model_folder_path)
+
+    file = open("../model/" + save_path + "/statistics.txt", "a")
     output = "\n----------------------New Training----------------------\n" \
-             "{}\n" \
+             "{} ---- Folder: {}\n" \
              "Parameters:\n\tMAX_MEMORY: {}\n\tMAX_MEMORY_INITIAL: {}\n\tBATCH_SIZE: {}\n\tLR: {}\n\tgamma: {}" \
              "\n\tmodel: {}\n\tfinal_epsilon: {}\n\tnum_decay_epochs: {}\n" \
              "--------------------------------------------------------\n"\
-        .format(datetime.now() ,MAX_MEMORY, MAX_MEMORY_INITIAL, BATCH_SIZE, LR, agent.gamma, agent.model, agent.final_epsilon,
+        .format(datetime.now(), save_path, MAX_MEMORY, MAX_MEMORY_INITIAL, BATCH_SIZE, LR, agent.gamma, agent.model, agent.final_epsilon,
                 agent.num_decay_epochs)
     file.write(output)
     file.close()
@@ -129,7 +138,7 @@ def train():
 
             if score > record:
                 record = score
-                agent.model.save()
+                agent.model.save(save_path)
 
             difference = (game.overal_reward / agent.n_games) - average_reward
             average_reward = game.overal_reward / agent.n_games
@@ -148,7 +157,7 @@ def train():
             total_score += totalReward
 
             if (agent.n_games % 100) == 0:
-                file = open("Statistics.txt", "a")
+                file = open("../model/" + save_path + "/statistics.txt", "a")
                 output = "Game: {} -- Average reward: {}\n".format(agent.n_games, average_reward)
                 file.write(output)
                 file.close()
@@ -156,9 +165,9 @@ def train():
             # plot_mean_scores.append(mean_score)
             # plot(plot_scores, plot_mean_scores)
 
-def loadModelAndPlay(path):
+def loadModelAndPlay(model_layers, path):
     # Load in the model
-    model = Linear_QNet(11, 256, 128, 128, 4)
+    model = Linear_QNet(model_layers)
     print(model.load_state_dict(torch.load(path)))
     print(model.eval())
 
@@ -167,7 +176,7 @@ def loadModelAndPlay(path):
     total_score = 0
     record = 0
     print('creating agent')
-    agent = Agent()
+    agent = Agent(model_layers)
     print('creating game')
     game = Game()
     print('initializing game')
@@ -213,5 +222,18 @@ def loadModelAndPlay(path):
             total_score += totalReward
 
 if __name__ == '__main__':
-    # train()
-    loadModelAndPlay("D:\Documenten\PythonPrograms\Snake-Reinforcement-Learning\model\model 1 hidden 256\model.pth")
+    model_layers = [11]
+    layers = input("How many hidden layers: ")
+
+    for i in range(1, int(layers)+1):
+        model_layers.append(int(input("Size of hidden layer {}: ".format(i))))
+
+    model_layers.append(4)
+    print("Model: " + str(model_layers))
+
+    train_or_play = input("Do you want to train (1) or load a model and play (2): ")
+    if train_or_play == "1":
+        train(model_layers)
+    elif train_or_play == "2":
+        folder = input("Give the folder where the model is stored: ")
+        loadModelAndPlay(model_layers, "D:\Documenten\PythonPrograms\Snake-Reinforcement-Learning\model\{}\model.pth".format(folder))

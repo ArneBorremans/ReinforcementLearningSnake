@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -5,24 +7,39 @@ import torch.nn.functional as F
 import os
 
 class Linear_QNet(nn.Module):
-    def __init__(self, input_size, hidden_size, hidden_size2, hidden_size3, output_size):
+    def __init__(self, layers):
+        # layers is for example [11, 256, 4] with 11 the input, 256 the hidden layer and 4 the output
         super().__init__()
-        self.linear1 = nn.Linear(input_size, hidden_size)
-        # self.linear2 = nn.Linear(hidden_size, hidden_size2)
-        # self.linear3 = nn.Linear(hidden_size2, hidden_size3)
-        self.linear2 = nn.Linear(hidden_size, output_size)
+        self.linears = []
+        self.layers = layers
+
+        # Input mapped to first hidden layer
+        self.linears.append(nn.Linear(layers[0], layers[1]))
+
+        print(self.linears)
+
+        # Map all the hidden layers
+        if len(layers) > 3:
+            for index in range(1, len(layers)-2):
+                self.linears.append(nn.Linear(layers[index], layers[index+1]))
+                print(self.linears)
+
+        # Map last hidden layer to output
+        self.linears.append(nn.Linear(layers[-2], layers[-1]))
+        print(self.linears)
+
+        for index in range(1, len(self.linears)+1):
+            self.add_module("linear" + str(index), self.linears[index-1])
 
     def forward(self, x):
-        x = F.relu(self.linear1(x))
-        # x = F.relu(self.linear2(x))
-        # x = F.relu(self.linear3(x))
-        x = self.linear2(x)
+        for index in range(0, len(self.linears)-1):
+            x = F.relu(self.linears[index](x))
+
+        x = self.linears[-1](x)
         return x
 
-    def save(self, file_name='model.pth'):
-        model_folder_path = '../model'
-        if not os.path.exists(model_folder_path):
-            os.makedirs(model_folder_path)
+    def save(self, path='standard', file_name='model.pth'):
+        model_folder_path = '../model/' + path
 
         file_name = os.path.join(model_folder_path, file_name)
         torch.save(self.state_dict(), file_name)
