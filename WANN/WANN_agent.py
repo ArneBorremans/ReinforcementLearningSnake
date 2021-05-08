@@ -3,11 +3,11 @@ import time
 
 import neat
 import os
+import visualize
 
 from Snake_Game_Multiple import Game
 
 POPULATION = 150
-
 
 class Agent:
     def __init__(self, nets):
@@ -30,6 +30,7 @@ def eval_genomes(genomes, config, population=POPULATION):
     for genome_id, genome in genomes:
         genome.fitness = 0
         net = neat.nn.FeedForwardNetwork.create(genome, config)
+        # visualize.draw_net(config, genome, True)
         nets.append(net)
         genomes_forwarded.append(genome)
 
@@ -45,6 +46,10 @@ def play(nets, genomes, population):
 
     all_done = 0
     time_outs = []
+    print(nets[0].input_nodes)
+    print(nets[0].node_evals)
+    print(nets[0].output_nodes)
+
     for net in nets:
         time_outs.append(0)
 
@@ -113,16 +118,25 @@ def run(config_file, population=POPULATION):
         file.close()
         config.save("../neat-model/" + save_path + "/config")
 
-    # Display the winning genome.
-    print('\nBest genome:\n{!s}'.format(winner))
+    visualize.draw_net(config, winner, True, "../neat-model/" + save_path + "/visualization", None, True, False)
+
+
 
     # Show output of the most fit genome against training data.
-    print('\nOutput:')
-    winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
-    print(winner_net)
+    with open("../neat-model/" + save_path + "/output", "a") as file:
+        file.write(save_path)
 
+        # Display the winning genome.
+        file.write('\nBest genome:\n{!s}'.format(winner))
 
-def replay(folder, population=1):
+        file.write("Output:")
+        winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
+        file.write(str(winner_net.input_nodes))
+        file.write(str(winner_net.node_evals))
+        file.write(str(winner_net.output_nodes))
+        file.write(str(winner_net.values))
+
+def replay(folder, vis=False, population=1):
     config_location = "../neat-model/" + folder + "/config"
     winner_location = "../neat-model/" + folder + "/winner.pkl"
 
@@ -137,6 +151,9 @@ def replay(folder, population=1):
     # Convert loaded genome into required data structure
     genomes = [(1, genome)]
 
+    if vis:
+        visualize.draw_net(config, genome, True)
+
     # Call game with only the loaded genome
     eval_genomes(genomes, config, population)
 
@@ -148,10 +165,14 @@ if __name__ == '__main__':
     train_or_play = input("Do you want to train (1) or load a model and play (2): ")
     if train_or_play == "1":
         local_dir = os.path.dirname(__file__)
-        config_path = os.path.join(local_dir, 'config')
+        configName = input("Give the name of the config: ")
+        if configName == "":
+            configName = "config"
+        config_path = os.path.join(local_dir, configName)
 
         run(config_path)
     elif train_or_play == "2":
         folder = input("Give the folder where the model is stored: ")
+        counter = 0
         while True:
             replay(folder)

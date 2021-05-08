@@ -12,6 +12,7 @@ from datetime import datetime
 MAX_MEMORY = 100_000
 MAX_MEMORY_INITIAL = 20_000
 BATCH_SIZE = 1000
+# LR = 0.001
 LR = 0.001
 
 
@@ -22,7 +23,7 @@ class Agent:
         self.epsilon = 0  # randomness
         self.gamma = 0.9  # discount rate
         self.memory = deque(maxlen=MAX_MEMORY)  # popleft()
-        # self.initial_memory = deque(maxlen=MAX_MEMORY_INITIAL)
+        self.initial_memory = deque(maxlen=MAX_MEMORY_INITIAL)
         self.model = Linear_QNet(model_layers)
         print(self.model)
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
@@ -36,19 +37,19 @@ class Agent:
         return game.get_state()
 
     def remember(self, state, action, reward, next_state, done):
-        # if self.remember_counter < 20000:
-        #     self.initial_memory.append((state, action, reward, next_state, done))
-        #     self.remember_counter += 1
-        # else:
-        self.memory.append((state, action, reward, next_state, done))  # popleft if MAX_MEMORY is reached
+        if self.remember_counter < 4000:
+            self.initial_memory.append((state, action, reward, next_state, done))
+            self.remember_counter += 1
+        else:
+            self.memory.append((state, action, reward, next_state, done))  # popleft if MAX_MEMORY is reached
 
     def train_long_memory(self):
-        # combined_memory = self.initial_memory + self.memory
+        combined_memory = self.initial_memory + self.memory
 
-        if len(self.memory) > BATCH_SIZE:
-            mini_sample = random.sample(self.memory, BATCH_SIZE)  # list of tuples
+        if len(combined_memory) > BATCH_SIZE:
+            mini_sample = random.sample(combined_memory, BATCH_SIZE)  # list of tuples
         else:
-            mini_sample = self.memory
+            mini_sample = combined_memory
 
         states, actions, rewards, next_states, dones = zip(*mini_sample)
         self.trainer.train_step(states, actions, rewards, next_states, dones)
@@ -93,6 +94,7 @@ def train(model_layers):
     print('initializing game')
     average_reward = 0
     difference = 0
+    time_out = 0
 
     save_path = "model" + time.strftime("%Y%m%d-%H%M%S")
 
@@ -128,7 +130,22 @@ def train(model_layers):
         # remember
         agent.remember(state_old, final_move, reward, state_new, done)
 
+        time_out += 1
+        if time_out >= 500:
+            game.game_over()
+
+        if reward == 10:
+            time_out = 0
+        if reward == -10:
+            time_out = 0
+
         if done:
+            if agent.n_games > 1:
+                if agent.n_games <= 900:
+                    agent.trainer.optimizer.param_groups[0]['lr'] = LR - (0.000001 * agent.n_games)
+                else:
+                    agent.trainer.optimizer.param_groups[0]['lr'] = 0.0001
+            print("LR: ", agent.trainer.optimizer.param_groups[0]['lr'])
             # train long memory, plot result
             gameLength = game.gameLength
             totalReward = game.total_reward
@@ -164,6 +181,9 @@ def train(model_layers):
             # mean_score = total_score / agent.n_games
             # plot_mean_scores.append(mean_score)
             # plot(plot_scores, plot_mean_scores)
+
+            time_out = 0
+
 
 def loadModelAndPlay(model_layers, path):
     # Load in the model
