@@ -44,7 +44,7 @@ class Game(object):
         # Hard      ->  40
         # Harder    ->  60
         # Impossible->  120
-        self.difficulty = 120
+        self.difficulty = 500
         self.gameLength = 0
 
         # Window size

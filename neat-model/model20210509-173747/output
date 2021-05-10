@@ -1,0 +1,42 @@
+model20210509-173747
+Best genome:
+Key: 2107
+Fitness: 10
+Nodes:
+	0 DefaultNodeGene(key=0, bias=-0.41261541971005095, response=1.0, activation=identity, aggregation=sum)
+	1 DefaultNodeGene(key=1, bias=-0.6528591151635779, response=1.0, activation=sin, aggregation=sum)
+	2 DefaultNodeGene(key=2, bias=-0.9838218787168687, response=1.0, activation=identity, aggregation=sum)
+	3 DefaultNodeGene(key=3, bias=1.2895308696882175, response=1.0, activation=gauss, aggregation=sum)
+	22 DefaultNodeGene(key=22, bias=-2.1230532921448706, response=1.0, activation=sin, aggregation=sum)
+	307 DefaultNodeGene(key=307, bias=1.9337459295810973, response=1.0, activation=sin, aggregation=sum)
+	470 DefaultNodeGene(key=470, bias=0.9391508602747236, response=1.0, activation=relu, aggregation=sum)
+	545 DefaultNodeGene(key=545, bias=-3.0506213909230624, response=1.0, activation=gauss, aggregation=sum)
+	1103 DefaultNodeGene(key=1103, bias=-0.8086240217401338, response=1.0, activation=identity, aggregation=sum)
+Connections:
+	DefaultConnectionGene(key=(-10, 0), weight=1.0, enabled=False)
+	DefaultConnectionGene(key=(-10, 22), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-10, 545), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-9, 22), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-7, 22), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-6, 1), weight=1.0, enabled=False)
+	DefaultConnectionGene(key=(-6, 22), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-6, 545), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-5, 22), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-4, 1), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-4, 22), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-4, 470), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-3, 22), weight=1.0, enabled=False)
+	DefaultConnectionGene(key=(-3, 1103), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-2, 3), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(-1, 22), weight=1.0, enabled=False)
+	DefaultConnectionGene(key=(-1, 307), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(22, 0), weight=1.0, enabled=False)
+	DefaultConnectionGene(key=(22, 1), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(22, 2), weight=1.0, enabled=False)
+	DefaultConnectionGene(key=(22, 3), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(307, 3), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(307, 22), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(470, 22), weight=1.0, enabled=False)
+	DefaultConnectionGene(key=(470, 307), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(545, 307), weight=1.0, enabled=True)
+	DefaultConnectionGene(key=(1103, 22), weight=1.0, enabled=True)Output:[-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11][(545, <function gauss_activation at 0x0000017F2CA87700>, <function sum_aggregation at 0x0000017F2CA943A0>, -3.0506213909230624, 1.0, [(-10, 1.0), (-6, 1.0)]), (470, <function relu_activation at 0x0000017F2CA87790>, <function sum_aggregation at 0x0000017F2CA943A0>, 0.9391508602747236, 1.0, [(-4, 1.0)]), (1103, <function identity_activation at 0x0000017F2CA878B0>, <function sum_aggregation at 0x0000017F2CA943A0>, -0.8086240217401338, 1.0, [(-3, 1.0)]), (307, <function sin_activation at 0x0000017F2CA87670>, <function sum_aggregation at 0x0000017F2CA943A0>, 1.9337459295810973, 1.0, [(-1, 1.0), (470, 1.0), (545, 1.0)]), (22, <function sin_activation at 0x0000017F2CA87670>, <function sum_aggregation at 0x0000017F2CA943A0>, -2.1230532921448706, 1.0, [(-4, 1.0), (-5, 1.0), (-6, 1.0), (-7, 1.0), (-9, 1.0), (-10, 1.0), (307, 1.0), (1103, 1.0)]), (1, <function sin_activation at 0x0000017F2CA87670>, <function sum_aggregation at 0x0000017F2CA943A0>, -0.6528591151635779, 1.0, [(22, 1.0), (-4, 1.0)]), (3, <function gauss_activation at 0x0000017F2CA87700>, <function sum_aggregation at 0x0000017F2CA943A0>, 1.2895308696882175, 1.0, [(22, 1.0), (307, 1.0), (-2, 1.0)])][0, 1, 2, 3]{-1: 0.0, -2: 0.0, -3: 0.0, -4: 0.0, -5: 0.0, -6: 0.0, -7: 0.0, -8: 0.0, -9: 0.0, -10: 0.0, -11: 0.0, 0: 0.0, 1: 0.0, 2: 0.0, 3: 0.0}

@@ -5,10 +5,7 @@ import neat
 import os
 import visualize
 
-from multiprocessing import Process
 from Snake_Game_Multiple import Game
-
-WEIGHT_VALUES = [-2, -1, -0.5, 0.5, 1, 2]
 
 class Agent:
     def __init__(self, nets):
@@ -29,33 +26,22 @@ def eval_genomes(genomes, config):
     nets = []
     genomes_forwarded = []
 
-    for weight_value in WEIGHT_VALUES:
-        show_first = True
-        print("Evaluating weight: ", weight_value)
+    for genome_id, genome in genomes:
+        genome.fitness = 0
+        net = neat.nn.FeedForwardNetwork.create(genome, config)
+        # visualize.draw_net(config, genome, True)
+        nets.append(net)
+        genomes_forwarded.append(genome)
 
-        for genome_id, genome in genomes:
-            genome.fitness = 0
-
-            if show_first:
-                for connection in genome.connections.items():
-                    connection[1].weight = weight_value
-
-            net = neat.nn.FeedForwardNetwork.create(genome, config)
-            nets.append(net)
-            genomes_forwarded.append(genome)
-            if show_first:
-                show_first = False
-
-        play(nets, genomes_forwarded, len(nets))
+    play(nets, genomes_forwarded, len(nets))
 
 
 def play(nets, genomes, population):
-
-    # print('creating agent')
+    print('creating agent')
     agent = Agent(nets)
-    # print('creating game')
+    print('creating game')
     game = Game(population)
-    # print('initializing game')
+    print('initializing game')
 
     all_done = 0
     time_outs = []
@@ -99,12 +85,6 @@ def play(nets, genomes, population):
             break
 
 
-def play_generation(game, agent, start, end, time_outs, genomes, all_done):
-    local_done = 0
-
-
-
-
 def run(config_file, number_of_generations=100):
     # Load configuration.
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
@@ -123,7 +103,7 @@ def run(config_file, number_of_generations=100):
     # Run for up to 300 generations.
     winner = p.run(eval_genomes, number_of_generations)
 
-    save_path = "WANNmodel" + time.strftime("%Y%m%d-%H%M%S")
+    save_path = "NEATmodel" + time.strftime("%Y%m%d-%H%M%S")
     model_folder_path = '../neat-model/' + save_path
     if not os.path.exists(model_folder_path):
         os.makedirs(model_folder_path)
@@ -147,10 +127,10 @@ def run(config_file, number_of_generations=100):
 
         file.write("Output:")
         winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
-        file.write('\n' + str(winner_net.input_nodes))
-        file.write('\n' + str(winner_net.node_evals))
-        file.write('\n' + str(winner_net.output_nodes))
-        file.write('\n' + str(winner_net.values))
+        file.write(str(winner_net.input_nodes))
+        file.write(str(winner_net.node_evals))
+        file.write(str(winner_net.output_nodes))
+        file.write(str(winner_net.values))
 
 def replay(folder, vis=False, population=1):
     config_location = "../neat-model/" + folder + "/config"
@@ -173,12 +153,6 @@ def replay(folder, vis=False, population=1):
     # Call game with only the loaded genome
     eval_genomes(genomes, config, population)
 
-def run_cpu_tasks_in_parallel(tasks):
-    running_tasks = [Process(target=task) for task in tasks]
-    for running_task in running_tasks:
-        running_task.start()
-    for running_task in running_tasks:
-        running_task.join()
 
 if __name__ == '__main__':
     # Determine path to configuration file. This path manipulation is
@@ -187,14 +161,12 @@ if __name__ == '__main__':
     train_or_play = input("Do you want to train (1) or load a model and play (2): ")
     if train_or_play == "1":
         local_dir = os.path.dirname(__file__)
-        configName = input("Give the name of the config (default=configWANNs/configWANN): ")
+        configName = input("Give the name of the config: ")
         if configName == "":
-            configName = "configWANNs/configWANN"
+            configName = "config"
         config_path = os.path.join(local_dir, configName)
 
-        number_of_generations = input("Give the amount of generations you want to run for (default=100): ")
-        if number_of_generations == "":
-            number_of_generations = 100
+        number_of_generations = input("Give the amount of generations you want to run for: ")
 
         run(config_path, int(number_of_generations))
     elif train_or_play == "2":
