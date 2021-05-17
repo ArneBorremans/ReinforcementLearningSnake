@@ -151,7 +151,7 @@ def replay(folder, vis=False, population=1):
         visualize.draw_net(config, genome, True)
 
     # Call game with only the loaded genome
-    eval_genomes(genomes, config, population)
+    eval_genomes(genomes, config)
 
 
 if __name__ == '__main__':
@@ -167,6 +167,8 @@ if __name__ == '__main__':
         config_path = os.path.join(local_dir, configName)
 
         number_of_generations = input("Give the amount of generations you want to run for: ")
+        if number_of_generations == "":
+            number_of_generations = 100
 
         run(config_path, int(number_of_generations))
     elif train_or_play == "2":

@@ -171,7 +171,7 @@ def replay(folder, vis=False, population=1):
         visualize.draw_net(config, genome, True)
 
     # Call game with only the loaded genome
-    eval_genomes(genomes, config, population)
+    eval_genomes(genomes, config)
 
 def run_cpu_tasks_in_parallel(tasks):
     running_tasks = [Process(target=task) for task in tasks]
