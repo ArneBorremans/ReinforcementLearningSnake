@@ -8,6 +8,7 @@ from Snake_Game import Game
 import time
 from model import Linear_QNet, QTrainer
 from datetime import datetime
+from plot import plot_history
 
 MAX_MEMORY = 100_000
 MAX_MEMORY_INITIAL = 20_000
@@ -82,7 +83,7 @@ class Agent:
         return final_move
 
 
-def train(model_layers):
+def train(model_layers, games):
     plot_scores = []
     plot_mean_scores = []
     total_score = 0
@@ -113,77 +114,90 @@ def train(model_layers):
     file.write(output)
     file.close()
 
-    while True:
-        # get old state
-        state_old = agent.get_state(game)
+    file = open("../model/" + save_path + "/plot.csv", "a")
+    output = "{},{},{}\n".format("Number Of Games", "Average Reward", "High Score")
+    file.write(output)
+    file.close()
 
-        # get move
-        final_move = agent.get_action(state_old)
+    games_int = int(games)
 
-        # perform move and get new state
-        reward, done, score = game.play_step(final_move)
-        state_new = agent.get_state(game)
+    for x in range(0, games_int):
+        while True:
+            # get old state
+            state_old = agent.get_state(game)
 
-        # train short memory
-        agent.train_short_memory(state_old, final_move, reward, state_new, done)
+            # get move
+            final_move = agent.get_action(state_old)
 
-        # remember
-        agent.remember(state_old, final_move, reward, state_new, done)
+            # perform move and get new state
+            reward, done, score = game.play_step(final_move)
+            state_new = agent.get_state(game)
 
-        time_out += 1
-        if time_out >= 500:
-            game.game_over()
+            # train short memory
+            agent.train_short_memory(state_old, final_move, reward, state_new, done)
 
-        if reward == 10:
-            time_out = 0
-        if reward == -10:
-            time_out = 0
+            # remember
+            agent.remember(state_old, final_move, reward, state_new, done)
 
-        if done:
-            if agent.n_games > 1:
-                if agent.n_games <= 900:
-                    agent.trainer.optimizer.param_groups[0]['lr'] = LR - (0.000001 * agent.n_games)
+            time_out += 1
+            if time_out >= 500:
+                game.game_over()
+
+            if reward == 10:
+                time_out = 0
+            if reward == -10:
+                time_out = 0
+
+            if done:
+                if agent.n_games > 1:
+                    if agent.n_games <= 900:
+                        agent.trainer.optimizer.param_groups[0]['lr'] = LR - (0.000001 * agent.n_games)
+                    else:
+                        agent.trainer.optimizer.param_groups[0]['lr'] = 0.0001
+                print("LR: ", agent.trainer.optimizer.param_groups[0]['lr'])
+                # train long memory, plot result
+                gameLength = game.gameLength
+                totalReward = game.total_reward
+                game.reset()
+                agent.n_games += 1
+                agent.train_long_memory()
+
+                if score > record:
+                    record = score
+                    agent.model.save(save_path)
+
+                difference = (game.overal_reward / agent.n_games) - average_reward
+                average_reward = game.overal_reward / agent.n_games
+
+                print("----------------------------- Game:", agent.n_games, "-----------------------------")
+                print("Survived for: ", gameLength)
+                print("Total reward: ", totalReward)
+
+                print('Score:', score, 'Record:', record)
+                if (difference >= 0):
+                    print('Average reward:', average_reward, "(+", difference, ")")
                 else:
-                    agent.trainer.optimizer.param_groups[0]['lr'] = 0.0001
-            print("LR: ", agent.trainer.optimizer.param_groups[0]['lr'])
-            # train long memory, plot result
-            gameLength = game.gameLength
-            totalReward = game.total_reward
-            game.reset()
-            agent.n_games += 1
-            agent.train_long_memory()
+                    print('Average reward:', average_reward, "(-", abs(difference), ")")
 
-            if score > record:
-                record = score
-                agent.model.save(save_path)
+                plot_scores.append(totalReward)
+                total_score += totalReward
 
-            difference = (game.overal_reward / agent.n_games) - average_reward
-            average_reward = game.overal_reward / agent.n_games
+                if (agent.n_games % 100) == 0:
+                    file = open("../model/" + save_path + "/statistics.txt", "a")
+                    output = "Game: {} -- Average reward: {}\n".format(agent.n_games, average_reward)
+                    file.write(output)
+                    file.close()
 
-            print("----------------------------- Game:", agent.n_games, "-----------------------------")
-            print("Survived for: ", gameLength)
-            print("Total reward: ", totalReward)
-
-            print('Score:', score, 'Record:', record)
-            if (difference >= 0):
-                print('Average reward:', average_reward, "(+", difference, ")")
-            else:
-                print('Average reward:', average_reward, "(-", abs(difference), ")")
-
-            plot_scores.append(totalReward)
-            total_score += totalReward
-
-            if (agent.n_games % 100) == 0:
-                file = open("../model/" + save_path + "/statistics.txt", "a")
-                output = "Game: {} -- Average reward: {}\n".format(agent.n_games, average_reward)
+                file = open("../model/" + save_path + "/plot.csv", "a")
+                output = "{},{},{}\n".format(agent.n_games, average_reward, record)
                 file.write(output)
                 file.close()
-            # mean_score = total_score / agent.n_games
-            # plot_mean_scores.append(mean_score)
-            # plot(plot_scores, plot_mean_scores)
 
-            time_out = 0
+                time_out = 0
 
+                break
+
+    plot_history("../model/" + save_path)
 
 def loadModelAndPlay(model_layers, path):
     # Load in the model
@@ -253,7 +267,9 @@ if __name__ == '__main__':
 
     train_or_play = input("Do you want to train (1) or load a model and play (2): ")
     if train_or_play == "1":
-        train(model_layers)
+        n_games = input("For how many games do you want to train: ")
+
+        train(model_layers, n_games)
     elif train_or_play == "2":
         folder = input("Give the folder where the model is stored: ")
         loadModelAndPlay(model_layers, "D:\Documenten\PythonPrograms\Snake-Reinforcement-Learning\model\{}\model.pth".format(folder))

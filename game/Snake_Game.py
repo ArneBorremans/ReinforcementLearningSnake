@@ -38,7 +38,7 @@ class Game(object):
         # Hard      ->  40
         # Harder    ->  60
         # Impossible->  120
-        self.difficulty = 120
+        self.difficulty = 10000
         self.gameOver = False
         self.gameLength = 0
         self.total_reward = 0
