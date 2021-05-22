@@ -1,0 +1,56 @@
+
+----------------------New Training----------------------
+2021-05-21 13:50:23.555361 ---- Folder: model20210521-135023
+Parameters:
+	MAX_MEMORY: 100000
+	MAX_MEMORY_INITIAL: 20000
+	BATCH_SIZE: 1000
+	LR: 0.001
+	gamma: 0.9
+	model: Linear_QNet(
+  (linear1): Linear(in_features=11, out_features=64, bias=True)
+  (linear2): Linear(in_features=64, out_features=4, bias=True)
+)
+	final_epsilon: 0.1
+	num_decay_epochs: 100
+--------------------------------------------------------
+Game: 100 -- Average reward: -8.0
+Game: 200 -- Average reward: -2.3
+Game: 300 -- Average reward: 6.8
+Game: 400 -- Average reward: 14.575
+Game: 500 -- Average reward: 21.08
+Game: 600 -- Average reward: 26.65
+Game: 700 -- Average reward: 29.185714285714287
+Game: 800 -- Average reward: 33.6875
+Game: 900 -- Average reward: 37.71111111111111
+Game: 1000 -- Average reward: 39.2
+Game: 1100 -- Average reward: 42.0
+Game: 1200 -- Average reward: 44.59166666666667
+Game: 1300 -- Average reward: 46.65384615384615
+Game: 1400 -- Average reward: 48.207142857142856
+Game: 1500 -- Average reward: 50.74666666666667
+Game: 1600 -- Average reward: 51.53125
+Game: 1700 -- Average reward: 53.0
+Game: 1800 -- Average reward: 54.144444444444446
+Game: 1900 -- Average reward: 55.026315789473685
+Game: 2000 -- Average reward: 55.82
+Game: 2100 -- Average reward: 56.67142857142857
+Game: 2200 -- Average reward: 57.55909090909091
+Game: 2300 -- Average reward: 58.73478260869565
+Game: 2400 -- Average reward: 59.395833333333336
+Game: 2500 -- Average reward: 59.624
+Game: 2600 -- Average reward: 60.18846153846154
+Game: 2700 -- Average reward: 60.29259259259259
+Game: 2800 -- Average reward: 61.207142857142856
+Game: 2900 -- Average reward: 61.59310344827586
+Game: 3000 -- Average reward: 62.36333333333334
+Game: 3100 -- Average reward: 62.958064516129035
+Game: 3200 -- Average reward: 63.178125
+Game: 3300 -- Average reward: 63.406060606060606
+Game: 3400 -- Average reward: 63.84705882352941
+Game: 3500 -- Average reward: 64.04285714285714
+Game: 3600 -- Average reward: 64.41388888888889
+Game: 3700 -- Average reward: 64.96756756756757
+Game: 3800 -- Average reward: 65.33157894736843
+Game: 3900 -- Average reward: 65.23589743589744
+Game: 4000 -- Average reward: 65.6

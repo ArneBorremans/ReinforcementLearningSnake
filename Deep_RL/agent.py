@@ -22,7 +22,7 @@ class Agent:
     def __init__(self, model_layers):
         self.n_games = 0  # number of games / epochs
         self.epsilon = 0  # randomness
-        self.gamma = 0.9  # discount rate
+        self.gamma = 0.85  # discount rate
         self.memory = deque(maxlen=MAX_MEMORY)  # popleft()
         self.initial_memory = deque(maxlen=MAX_MEMORY_INITIAL)
         self.model = Linear_QNet(model_layers)
@@ -31,7 +31,7 @@ class Agent:
 
         self.initial_epsilon = 1
         self.final_epsilon = 0.1
-        self.num_decay_epochs = 100
+        self.num_decay_epochs = 50
         self.remember_counter = 0
 
     def get_state(self, game):
@@ -151,8 +151,10 @@ def train(model_layers, games):
             if done:
                 if agent.n_games > 1:
                     if agent.n_games <= 900:
+                        # 0.000001
                         agent.trainer.optimizer.param_groups[0]['lr'] = LR - (0.000001 * agent.n_games)
                     else:
+                        # 0.0001
                         agent.trainer.optimizer.param_groups[0]['lr'] = 0.0001
                 print("LR: ", agent.trainer.optimizer.param_groups[0]['lr'])
                 # train long memory, plot result
