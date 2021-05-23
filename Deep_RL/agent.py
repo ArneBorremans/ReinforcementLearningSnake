@@ -30,7 +30,7 @@ class Agent:
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
 
         self.initial_epsilon = 1
-        self.final_epsilon = 0.1
+        self.final_epsilon = 0.001
         self.num_decay_epochs = 50
         self.remember_counter = 0
 
@@ -240,6 +240,9 @@ def loadModelAndPlay(model_layers, path):
             totalReward = game.total_reward
             game.reset()
             agent.n_games += 1
+
+            if score > record:
+                record = score
 
             difference = (game.overal_reward / agent.n_games) - average_reward
             average_reward = game.overal_reward / agent.n_games
