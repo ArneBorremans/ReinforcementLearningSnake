@@ -8,7 +8,7 @@ import pygame, sys, random
 
 class Game(object):
     def __init__(self, amount_of_snakes):
-        pygame.init()
+        # pygame.init()
         self.amount_of_snakes = amount_of_snakes
         self.reset()
 
@@ -17,9 +17,9 @@ class Game(object):
         self.rewards[snake] -= 10
         self.game_overs[snake] = True
 
-    def next_generation(self):
-        self.game_window.fill(self.black)
-        pygame.display.flip()
+    # def next_generation(self):
+    #     self.game_window.fill(self.black)
+    #     pygame.display.flip()
 
     # Score
     # def show_score(self, choice, color, font, size):
@@ -33,9 +33,9 @@ class Game(object):
     #     self.game_window.blit(score_surface, score_rect)
     #     # pygame.display.flip()
 
-    def random_color(self):
-        color = [random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)]
-        return pygame.Color(color)
+    # def random_color(self):
+    #     color = [random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)]
+    #     return pygame.Color(color)
 
     def reset(self):
         # Difficulty settings
@@ -44,7 +44,7 @@ class Game(object):
         # Hard      ->  40
         # Harder    ->  60
         # Impossible->  120
-        self.difficulty = 60
+        # self.difficulty = 10000
         self.gameLength = 0
 
         # Window size
@@ -52,28 +52,28 @@ class Game(object):
         self.frame_size_y = 480
 
         # Checks for errors encountered
-        self.check_errors = pygame.init()
+        # self.check_errors = pygame.init()
         # pygame.init() example output -> (6, 0)
         # second number in tuple gives number of errors
-        if self.check_errors[1] > 0:
-            print(f'[!] Had {self.check_errors[1]} errors when initialising game, exiting...')
-            sys.exit(-1)
-        # else:
+        # if self.check_errors[1] > 0:
+        #     print(f'[!] Had {self.check_errors[1]} errors when initialising game, exiting...')
+        #     sys.exit(-1)
+        # # else:
             # print('[+] Game successfully initialised')
 
-        # Initialise game window
-        pygame.display.set_caption('Snake Eater')
-        self.game_window = pygame.display.set_mode((self.frame_size_x, self.frame_size_y))
+        # # Initialise game window
+        # pygame.display.set_caption('Snake Eater')
+        # self.game_window = pygame.display.set_mode((self.frame_size_x, self.frame_size_y))
 
-        # Colors (R, G, B)
-        self.black = pygame.Color(0, 0, 0)
-        self.white = pygame.Color(255, 255, 255)
-        self.red = pygame.Color(255, 0, 0)
-        self.green = pygame.Color(0, 255, 0)
-        self.blue = pygame.Color(0, 0, 255)
+        # # Colors (R, G, B)
+        # self.black = pygame.Color(0, 0, 0)
+        # self.white = pygame.Color(255, 255, 255)
+        # self.red = pygame.Color(255, 0, 0)
+        # self.green = pygame.Color(0, 255, 0)
+        # self.blue = pygame.Color(0, 0, 255)
 
-        # FPS (frames per second) controller
-        self.fps_controller = pygame.time.Clock()
+        # # FPS (frames per second) controller
+        # self.fps_controller = pygame.time.Clock()
 
         self.snake_positions = []
         self.snake_bodies = []
@@ -84,7 +84,6 @@ class Game(object):
         self.scores = []
         self.game_overs = []
         self.rewards = []
-        self.colors = []
 
         # Game variable
         for i in range(0, self.amount_of_snakes):
@@ -97,7 +96,6 @@ class Game(object):
             self.scores.append(0)
             self.game_overs.append(False)
             self.rewards.append(0)
-            self.colors.append(self.random_color())
 
     def play_step(self, action, snake):
         # Main logic
@@ -114,7 +112,7 @@ class Game(object):
 
         # self.show_score(1, self.white, 'consolas', 20)
         # Refresh game screen
-        pygame.display.update()
+        # pygame.display.update()
 
         self.gameLength += 0.1
 
@@ -138,17 +136,17 @@ class Game(object):
         self.food_spawns[snake] = True
 
         # GFX
-        self.game_window.fill(self.black)
-        for i in range(0, self.amount_of_snakes):
-            if not self.game_overs[i]:
-                for pos in self.snake_bodies[i]:
-                    # Snake body
-                    # .draw.rect(play_surface, color, xy-coordinate)
-                    # xy-coordinate -> .Rect(x, y, size_x, size_y)
-                    pygame.draw.rect(self.game_window, self.colors[i], pygame.Rect(pos[0], pos[1], 10, 10))
-                    # Snake food
-                pygame.draw.rect(self.game_window, self.colors[i],
-                                 pygame.Rect(self.food_positions[i][0], self.food_positions[i][1], 10, 10))
+        # self.game_window.fill(self.black)
+        # for i in range(0, self.amount_of_snakes):
+        #     if not self.game_overs[i]:
+        #         for pos in self.snake_bodies[i]:
+        #             # Snake body
+        #             # .draw.rect(play_surface, color, xy-coordinate)
+        #             # xy-coordinate -> .Rect(x, y, size_x, size_y)
+        #             pygame.draw.rect(self.game_window, self.colors[i], pygame.Rect(pos[0], pos[1], 10, 10))
+        #             # Snake food
+        #         pygame.draw.rect(self.game_window, self.colors[i],
+        #                          pygame.Rect(self.food_positions[i][0], self.food_positions[i][1], 10, 10))
 
 
         # Game Over conditions

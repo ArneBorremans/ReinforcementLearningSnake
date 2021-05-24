@@ -2,9 +2,9 @@
 # or the experiment itself.  This is the only required section.
 [NEAT]
 fitness_criterion      = max
-fitness_threshold      = 900
+fitness_threshold      = 750.0
 no_fitness_termination = False
-pop_size               = 1000
+pop_size               = 500
 reset_on_extinction    = False
 
 [DefaultGenome]
@@ -26,14 +26,14 @@ bias_replace_rate                  = 0.1
 compatibility_disjoint_coefficient = 1.0
 compatibility_weight_coefficient   = 0.5
 conn_add_prob                      = 0.5
-conn_delete_prob                   = 0.1
+conn_delete_prob                   = 0.45
 enabled_default                    = True
 enabled_mutate_rate                = 0.1
 enabled_rate_to_false_add          = 0.0
 enabled_rate_to_true_add           = 0.0
 feed_forward                       = True
 node_add_prob                      = 0.2
-node_delete_prob                   = 0.04
+node_delete_prob                   = 0.15
 num_hidden                         = 0
 num_inputs                         = 11
 num_outputs                        = 4
@@ -53,14 +53,14 @@ weight_init_type                   = gaussian
 weight_max_value                   = 30.0
 weight_min_value                   = -30.0
 weight_mutate_power                = 0.5
-weight_mutate_rate                 = 0.95
+weight_mutate_rate                 = 0.8
 weight_replace_rate                = 0.1
 
 [DefaultSpeciesSet]
-compatibility_threshold = 3.2
+compatibility_threshold = 2.5
 
 [DefaultStagnation]
-max_stagnation       = 20
+max_stagnation       = 50
 species_elitism      = 1
 species_fitness_func = max
 

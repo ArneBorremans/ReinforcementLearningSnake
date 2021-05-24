@@ -1,0 +1,100 @@
+NEATmodel20210524-203600
+Best genome:
+Key: 24848
+Fitness: 510
+Nodes:
+	0 DefaultNodeGene(key=0, bias=-2.075343510004946, response=1.0, activation=sigmoid, aggregation=sum)
+	1 DefaultNodeGene(key=1, bias=-1.8575982623643885, response=1.0, activation=sigmoid, aggregation=sum)
+	2 DefaultNodeGene(key=2, bias=-0.6632494429565637, response=1.0, activation=sigmoid, aggregation=sum)
+	3 DefaultNodeGene(key=3, bias=0.25561694721928946, response=1.0, activation=sigmoid, aggregation=sum)
+	846 DefaultNodeGene(key=846, bias=-0.8141134105930701, response=1.0, activation=sigmoid, aggregation=sum)
+Connections:
+	DefaultConnectionGene(key=(-11, 1), weight=2.2124849222015586, enabled=True)
+	DefaultConnectionGene(key=(-11, 2), weight=-1.2915555026414474, enabled=True)
+	DefaultConnectionGene(key=(-10, 0), weight=7.247949418692391, enabled=True)
+	DefaultConnectionGene(key=(-10, 3), weight=1.0558285829079777, enabled=False)
+	DefaultConnectionGene(key=(-9, 0), weight=-1.2819301382474595, enabled=True)
+	DefaultConnectionGene(key=(-9, 1), weight=-1.8605723235917435, enabled=True)
+	DefaultConnectionGene(key=(-9, 3), weight=7.371895524437467, enabled=True)
+	DefaultConnectionGene(key=(-8, 0), weight=-0.21915602032065815, enabled=True)
+	DefaultConnectionGene(key=(-8, 1), weight=-1.0057893718664488, enabled=True)
+	DefaultConnectionGene(key=(-8, 2), weight=8.776490262148238, enabled=True)
+	DefaultConnectionGene(key=(-8, 3), weight=-0.7991682624349122, enabled=True)
+	DefaultConnectionGene(key=(-7, 0), weight=-1.3714220696947415, enabled=True)
+	DefaultConnectionGene(key=(-7, 1), weight=1.3785984429695615, enabled=False)
+	DefaultConnectionGene(key=(-7, 3), weight=3.2944816952840656, enabled=False)
+	DefaultConnectionGene(key=(-7, 846), weight=0.7711002926103612, enabled=True)
+	DefaultConnectionGene(key=(-6, 0), weight=-2.8164909050611926, enabled=True)
+	DefaultConnectionGene(key=(-6, 1), weight=-0.4990286658099737, enabled=True)
+	DefaultConnectionGene(key=(-6, 2), weight=-2.696766501151026, enabled=True)
+	DefaultConnectionGene(key=(-6, 3), weight=-5.419243100593592, enabled=True)
+	DefaultConnectionGene(key=(-5, 0), weight=-2.6299153931531194, enabled=True)
+	DefaultConnectionGene(key=(-5, 1), weight=2.5165777178670403, enabled=True)
+	DefaultConnectionGene(key=(-5, 2), weight=-1.9175637727732509, enabled=False)
+	DefaultConnectionGene(key=(-4, 1), weight=-0.13271474144261208, enabled=False)
+	DefaultConnectionGene(key=(-4, 2), weight=-0.2993337293636258, enabled=False)
+	DefaultConnectionGene(key=(-4, 3), weight=-0.6509666070601894, enabled=True)
+	DefaultConnectionGene(key=(-4, 846), weight=0.35496213601973636, enabled=True)
+	DefaultConnectionGene(key=(-3, 0), weight=1.2628610675962189, enabled=True)
+	DefaultConnectionGene(key=(-3, 2), weight=0.6045185450963375, enabled=True)
+	DefaultConnectionGene(key=(-2, 2), weight=0.48118745797714946, enabled=True)
+	DefaultConnectionGene(key=(-2, 3), weight=0.08785550411285514, enabled=False)
+	DefaultConnectionGene(key=(-1, 0), weight=0.5548159481641917, enabled=True)
+	DefaultConnectionGene(key=(-1, 1), weight=1.8652015440628726, enabled=False)
+	DefaultConnectionGene(key=(-1, 2), weight=1.7101423338295054, enabled=True)
+	DefaultConnectionGene(key=(-1, 3), weight=-3.8191369097825465, enabled=True)
+	DefaultConnectionGene(key=(0, 846), weight=-1.1048595800213865, enabled=True)
+	DefaultConnectionGene(key=(846, 1), weight=-0.7481934919188855, enabled=False)
+	DefaultConnectionGene(key=(846, 3), weight=-1.8004174775089654, enabled=True)Output:[-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11][(0, <function sigmoid_activation at 0x000002AFB123D9D0>, <function sum_aggregation at 0x000002AFB124A820>, -2.075343510004946, 1.0, [(-1, 0.5548159481641917), (-5, -2.6299153931531194), (-6, -2.8164909050611926), (-7, -1.3714220696947415), (-8, -0.21915602032065815), (-9, -1.2819301382474595), (-10, 7.247949418692391), (-3, 1.2628610675962189)]), (1, <function sigmoid_activation at 0x000002AFB123D9D0>, <function sum_aggregation at 0x000002AFB124A820>, -1.8575982623643885, 1.0, [(-5, 2.5165777178670403), (-6, -0.4990286658099737), (-8, -1.0057893718664488), (-9, -1.8605723235917435), (-11, 2.2124849222015586)]), (2, <function sigmoid_activation at 0x000002AFB123D9D0>, <function sum_aggregation at 0x000002AFB124A820>, -0.6632494429565637, 1.0, [(-2, 0.48118745797714946), (-6, -2.696766501151026), (-8, 8.776490262148238), (-11, -1.2915555026414474), (-1, 1.7101423338295054), (-3, 0.6045185450963375)]), (846, <function sigmoid_activation at 0x000002AFB123D9D0>, <function sum_aggregation at 0x000002AFB124A820>, -0.8141134105930701, 1.0, [(-7, 0.7711002926103612), (-4, 0.35496213601973636), (0, -1.1048595800213865)]), (3, <function sigmoid_activation at 0x000002AFB123D9D0>, <function sum_aggregation at 0x000002AFB124A820>, 0.25561694721928946, 1.0, [(-1, -3.8191369097825465), (-4, -0.6509666070601894), (-6, -5.419243100593592), (-8, -0.7991682624349122), (-9, 7.371895524437467), (846, -1.8004174775089654)])][0, 1, 2, 3]{-1: 0.0, -2: 0.0, -3: 0.0, -4: 0.0, -5: 0.0, -6: 0.0, -7: 0.0, -8: 0.0, -9: 0.0, -10: 0.0, -11: 0.0, 0: 0.0, 1: 0.0, 2: 0.0, 3: 0.0}
+
+
+Generation: 0 - Best fitness: 20 - Average fitness: -9.02
+Generation: 1 - Best fitness: 10 - Average fitness: -9.12
+Generation: 2 - Best fitness: 10 - Average fitness: -8.84
+Generation: 3 - Best fitness: 10 - Average fitness: -8.74
+Generation: 4 - Best fitness: 40 - Average fitness: -8.02
+Generation: 5 - Best fitness: 20 - Average fitness: -7.76
+Generation: 6 - Best fitness: 20 - Average fitness: -7.22
+Generation: 7 - Best fitness: 20 - Average fitness: -6.68
+Generation: 8 - Best fitness: 20 - Average fitness: -6.24
+Generation: 9 - Best fitness: 80 - Average fitness: -5.62
+Generation: 10 - Best fitness: 90 - Average fitness: -5.58
+Generation: 11 - Best fitness: 510 - Average fitness: -3.7
+Generation: 12 - Best fitness: 350 - Average fitness: -4.32
+Generation: 13 - Best fitness: 150 - Average fitness: -4.0
+Generation: 14 - Best fitness: 400 - Average fitness: -2.9
+Generation: 15 - Best fitness: 340 - Average fitness: -3.58
+Generation: 16 - Best fitness: 270 - Average fitness: -3.76
+Generation: 17 - Best fitness: 70 - Average fitness: -3.78
+Generation: 18 - Best fitness: 70 - Average fitness: -2.46
+Generation: 19 - Best fitness: 80 - Average fitness: -2.02
+Generation: 20 - Best fitness: 270 - Average fitness: 0.14
+Generation: 21 - Best fitness: 230 - Average fitness: -0.22
+Generation: 22 - Best fitness: 420 - Average fitness: 3.84
+Generation: 23 - Best fitness: 260 - Average fitness: 5.0
+Generation: 24 - Best fitness: 280 - Average fitness: 4.28
+Generation: 25 - Best fitness: 230 - Average fitness: 8.96
+Generation: 26 - Best fitness: 410 - Average fitness: 6.16
+Generation: 27 - Best fitness: 590 - Average fitness: 13.56
+Generation: 28 - Best fitness: 420 - Average fitness: 15.08
+Generation: 29 - Best fitness: 480 - Average fitness: 21.44
+Generation: 30 - Best fitness: 390 - Average fitness: 20.98
+Generation: 31 - Best fitness: 530 - Average fitness: 28.06
+Generation: 32 - Best fitness: 410 - Average fitness: 26.4
+Generation: 33 - Best fitness: 490 - Average fitness: 25.72
+Generation: 34 - Best fitness: 510 - Average fitness: 28.62
+Generation: 35 - Best fitness: 470 - Average fitness: 40.84
+Generation: 36 - Best fitness: 480 - Average fitness: 40.78
+Generation: 37 - Best fitness: 420 - Average fitness: 41.98
+Generation: 38 - Best fitness: 520 - Average fitness: 39.36
+Generation: 39 - Best fitness: 530 - Average fitness: 43.28
+Generation: 40 - Best fitness: 500 - Average fitness: 43.86
+Generation: 41 - Best fitness: 440 - Average fitness: 45.4
+Generation: 42 - Best fitness: 520 - Average fitness: 43.38
+Generation: 43 - Best fitness: 480 - Average fitness: 42.16
+Generation: 44 - Best fitness: 520 - Average fitness: 40.36
+Generation: 45 - Best fitness: 420 - Average fitness: 47.48
+Generation: 46 - Best fitness: 530 - Average fitness: 42.5
+Generation: 47 - Best fitness: 460 - Average fitness: 42.98
+Generation: 48 - Best fitness: 540 - Average fitness: 42.38
+Generation: 49 - Best fitness: 510 - Average fitness: 46.44

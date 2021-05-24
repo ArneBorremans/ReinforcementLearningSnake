@@ -5,9 +5,9 @@ import neat
 import os
 import visualize
 import numpy as np
+from joblib import Parallel, delayed
 
-
-from Snake_Game_Multiple import Game
+from Snake_Game_Multiple_NoGUI_Parallel import Game
 
 class Agent:
     def __init__(self, nets):
@@ -78,15 +78,10 @@ def play(nets, genomes, population):
                 if done | game.game_overs[snake - 1]:
                     all_done += 1
 
-        # Refresh rate
-        game.fps_controller.tick(game.difficulty)
-
         if all_done == population:
             print("High score: {}\n".format(genomes[0].fitness))
-            game.next_generation()
             game.reset()
             break
-
 
 def run(config_file, number_of_generations=100):
     # Load configuration.
