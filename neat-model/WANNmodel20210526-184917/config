@@ -2,13 +2,13 @@
 # or the experiment itself.  This is the only required section.
 [NEAT]
 fitness_criterion      = max
-fitness_threshold      = 2500.0
+fitness_threshold      = 3000.0
 no_fitness_termination = False
 pop_size               = 500
 reset_on_extinction    = True
 
 [DefaultGenome]
-initial_connection                 = full_nodirect
+initial_connection      = full_nodirect
 activation_default                 = random
 activation_mutate_rate             = 0.1
 activation_options                 = relu inv gauss abs tanh sin

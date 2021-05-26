@@ -201,7 +201,8 @@ def train(model_layers, games):
 
     plot_history("../model/" + save_path)
 
-def loadModelAndPlay(model_layers, path):
+
+def loadModelAndPlay(model_layers, path, games=500):
     # Load in the model
     model = Linear_QNet(model_layers)
     print(model.load_state_dict(torch.load(path)))
@@ -219,46 +220,53 @@ def loadModelAndPlay(model_layers, path):
     average_reward = 0
     difference = 0
 
-    while True:
-        # get old state
-        current_state = agent.get_state(game)
+    for i in range(0, games):
+        while True:
+            # get old state
+            current_state = agent.get_state(game)
 
-        # get move
-        final_move = [0, 0, 0, 0]
+            # get move
+            final_move = [0, 0, 0, 0]
 
-        state0 = torch.tensor(current_state, dtype=torch.float)
-        prediction = model.forward(state0)
-        move = torch.argmax(prediction).item()
-        final_move[move] = 1
+            state0 = torch.tensor(current_state, dtype=torch.float)
+            prediction = model.forward(state0)
+            move = torch.argmax(prediction).item()
+            final_move[move] = 1
 
-        # perform move and get new state
-        reward, done, score = game.play_step(final_move)
+            # perform move and get new state
+            reward, done, score = game.play_step(final_move)
 
-        if done:
-            # train long memory, plot result
-            gameLength = game.gameLength
-            totalReward = game.total_reward
-            game.reset()
-            agent.n_games += 1
+            if done:
+                # train long memory, plot result
+                gameLength = game.gameLength
+                totalReward = game.total_reward
+                game.reset()
+                agent.n_games += 1
 
-            if score > record:
-                record = score
+                if score > record:
+                    record = score
 
-            difference = (game.overal_reward / agent.n_games) - average_reward
-            average_reward = game.overal_reward / agent.n_games
+                difference = (game.overal_reward / agent.n_games) - average_reward
+                average_reward = game.overal_reward / agent.n_games
 
-            print("----------------------------- Game:", agent.n_games, "-----------------------------")
-            print("Survived for: ", gameLength)
-            print("Total reward: ", totalReward)
+                print("----------------------------- Game:", agent.n_games, "-----------------------------")
+                print("Survived for: ", gameLength)
+                print("Total reward: ", totalReward)
 
-            print('Score:', score, 'Record:', record)
-            if (difference >= 0):
-                print('Average reward:', average_reward, "(+", difference, ")")
-            else:
-                print('Average reward:', average_reward, "(-", abs(difference), ")")
+                print('Score:', score, 'Record:', record)
+                if (difference >= 0):
+                    print('Average reward:', average_reward, "(+", difference, ")")
+                else:
+                    print('Average reward:', average_reward, "(-", abs(difference), ")")
 
-            plot_scores.append(totalReward)
-            total_score += totalReward
+                plot_scores.append(totalReward)
+                total_score += totalReward
+
+                break
+
+    with open("../results/RL.txt", "a") as file:
+        file.write('Average reward: {} - Record: {}'.format(average_reward, record))
+        file.close()
 
 if __name__ == '__main__':
     model_layers = [11]

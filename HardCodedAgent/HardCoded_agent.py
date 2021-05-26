@@ -74,7 +74,7 @@ class Agent:
         return final_move
 
 
-def play():
+def play(games):
     total_score = 0
     record = 0
     average_reward = 0
@@ -84,40 +84,46 @@ def play():
     game = Game()
     print('initializing game')
 
-    while True:
-        # get old state
-        state_old = agent.get_state(game)
+    for i in range(0, games):
+        while True:
+            # get old state
+            state_old = agent.get_state(game)
 
-        # get move
-        final_move = agent.get_action(state_old)
+            # get move
+            final_move = agent.get_action(state_old)
 
-        # perform move and get new state
-        reward, done, score = game.play_step(final_move)
-        state_new = agent.get_state(game)
+            # perform move and get new state
+            reward, done, score = game.play_step(final_move)
+            state_new = agent.get_state(game)
 
-        if done:
-            # train long memory, plot result
-            gameLength = game.gameLength
-            totalReward = game.total_reward
-            game.reset()
-            agent.n_games += 1
+            if done:
+                # train long memory, plot result
+                gameLength = game.gameLength
+                totalReward = game.total_reward
+                game.reset()
+                agent.n_games += 1
 
-            if score > record:
-                record = score
+                if score > record:
+                    record = score
 
-            difference = (game.overal_reward / agent.n_games) - average_reward
-            average_reward = game.overal_reward / agent.n_games
+                difference = (game.overal_reward / agent.n_games) - average_reward
+                average_reward = game.overal_reward / agent.n_games
 
-            print("----------------------------- Game:", agent.n_games, "-----------------------------")
-            print("Survived for: ", gameLength)
-            print("Total reward: ", totalReward)
+                print("----------------------------- Game:", agent.n_games, "-----------------------------")
+                print("Survived for: ", gameLength)
+                print("Total reward: ", totalReward)
 
-            print('Score:', score, 'Record:', record)
-            if (difference >= 0):
-                print('Average reward:', average_reward, "(+", difference, ")")
-            else:
-                print('Average reward:', average_reward, "(-", abs(difference), ")")
+                print('Score:', score, 'Record:', record)
+                if (difference >= 0):
+                    print('Average reward:', average_reward, "(+", difference, ")")
+                else:
+                    print('Average reward:', average_reward, "(-", abs(difference), ")")
 
+                break
+
+    with open("../results/hardcoded.txt", "a") as file:
+        file.write('Average reward: {} - Record: {}'.format(average_reward, record))
+        file.close()
 
 if __name__ == '__main__':
-    play()
+    play(500)

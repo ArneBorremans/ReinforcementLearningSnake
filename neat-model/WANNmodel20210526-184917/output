@@ -1,0 +1,60 @@
+WANNmodel20210526-184917
+Best genome:
+Key: 59449
+Fitness: 2520
+Nodes:
+	0 DefaultNodeGene(key=0, bias=1.0, response=1.0, activation=abs, aggregation=sum)
+	1 DefaultNodeGene(key=1, bias=1.0, response=1.0, activation=abs, aggregation=sum)
+	2 DefaultNodeGene(key=2, bias=1.0, response=1.0, activation=abs, aggregation=sum)
+	3 DefaultNodeGene(key=3, bias=1.0, response=1.0, activation=abs, aggregation=sum)
+	28264 DefaultNodeGene(key=28264, bias=1.0, response=1.0, activation=sin, aggregation=sum)
+	36531 DefaultNodeGene(key=36531, bias=1.0, response=1.0, activation=tanh, aggregation=sum)
+	38421 DefaultNodeGene(key=38421, bias=1.0, response=1.0, activation=abs, aggregation=sum)
+	39222 DefaultNodeGene(key=39222, bias=1.0, response=1.0, activation=sin, aggregation=sum)
+	39705 DefaultNodeGene(key=39705, bias=1.0, response=1.0, activation=tanh, aggregation=sum)
+	40410 DefaultNodeGene(key=40410, bias=1.0, response=1.0, activation=tanh, aggregation=sum)
+	41385 DefaultNodeGene(key=41385, bias=1.0, response=1.0, activation=tanh, aggregation=sum)
+	42956 DefaultNodeGene(key=42956, bias=1.0, response=1.0, activation=tanh, aggregation=sum)
+	43360 DefaultNodeGene(key=43360, bias=1.0, response=1.0, activation=gauss, aggregation=sum)
+	43759 DefaultNodeGene(key=43759, bias=1.0, response=1.0, activation=tanh, aggregation=sum)
+	44095 DefaultNodeGene(key=44095, bias=1.0, response=1.0, activation=tanh, aggregation=sum)
+	44562 DefaultNodeGene(key=44562, bias=1.0, response=1.0, activation=gauss, aggregation=sum)
+	44825 DefaultNodeGene(key=44825, bias=1.0, response=1.0, activation=tanh, aggregation=sum)
+	45327 DefaultNodeGene(key=45327, bias=1.0, response=1.0, activation=abs, aggregation=sum)
+	45731 DefaultNodeGene(key=45731, bias=1.0, response=1.0, activation=sin, aggregation=sum)
+	47189 DefaultNodeGene(key=47189, bias=1.0, response=1.0, activation=tanh, aggregation=sum)
+Connections:
+	DefaultConnectionGene(key=(-11, 1), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-10, 0), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-9, 3), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-8, 2), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-7, 0), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-7, 1), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-6, 2), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-6, 42956), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-5, 3), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-5, 36531), weight=2, enabled=False)
+	DefaultConnectionGene(key=(-5, 40410), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-4, 0), weight=2, enabled=False)
+	DefaultConnectionGene(key=(-4, 41385), weight=2, enabled=False)
+	DefaultConnectionGene(key=(-4, 47189), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-2, 1), weight=2, enabled=False)
+	DefaultConnectionGene(key=(-1, 2), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-1, 3), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-1, 39705), weight=2, enabled=True)
+	DefaultConnectionGene(key=(-1, 42956), weight=2, enabled=True)
+	DefaultConnectionGene(key=(39705, 44095), weight=2, enabled=True)
+	DefaultConnectionGene(key=(39705, 44562), weight=2, enabled=False)
+	DefaultConnectionGene(key=(39705, 45731), weight=2, enabled=True)
+	DefaultConnectionGene(key=(41385, 0), weight=2, enabled=False)
+	DefaultConnectionGene(key=(42956, 40410), weight=2, enabled=True)
+	DefaultConnectionGene(key=(43360, 28264), weight=2, enabled=False)
+	DefaultConnectionGene(key=(43360, 43759), weight=2, enabled=True)
+	DefaultConnectionGene(key=(43759, 28264), weight=2, enabled=False)
+	DefaultConnectionGene(key=(44095, 42956), weight=2, enabled=True)
+	DefaultConnectionGene(key=(45731, 44562), weight=2, enabled=True)
+	DefaultConnectionGene(key=(47189, 0), weight=2, enabled=True)Output:
+[-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11]
+[(1, <function abs_activation at 0x0000025B26DCA040>, <function sum_aggregation at 0x0000025B26DCA820>, 1.0, 1.0, [(-7, 2), (-11, 2)]), (2, <function abs_activation at 0x0000025B26DCA040>, <function sum_aggregation at 0x0000025B26DCA820>, 1.0, 1.0, [(-1, 2), (-6, 2), (-8, 2)]), (3, <function abs_activation at 0x0000025B26DCA040>, <function sum_aggregation at 0x0000025B26DCA820>, 1.0, 1.0, [(-1, 2), (-5, 2), (-9, 2)]), (47189, <function tanh_activation at 0x0000025B26DBDA60>, <function sum_aggregation at 0x0000025B26DCA820>, 1.0, 1.0, [(-4, 2)]), (0, <function abs_activation at 0x0000025B26DCA040>, <function sum_aggregation at 0x0000025B26DCA820>, 1.0, 1.0, [(-7, 2), (-10, 2), (47189, 2)])]
+[0, 1, 2, 3]
+{-1: 0.0, -2: 0.0, -3: 0.0, -4: 0.0, -5: 0.0, -6: 0.0, -7: 0.0, -8: 0.0, -9: 0.0, -10: 0.0, -11: 0.0, 0: 0.0, 1: 0.0, 2: 0.0, 3: 0.0}

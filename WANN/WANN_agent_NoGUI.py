@@ -4,10 +4,11 @@ import time
 import neat
 import os
 import visualize
-import numpy as np
-from joblib import Parallel, delayed
 
+from multiprocessing import Process
 from Snake_Game_Multiple_NoGUI_Parallel import Game
+
+WEIGHT_VALUES = [-2, -1, -0.5, 0.5, 1, 2]
 
 class Agent:
     def __init__(self, nets):
@@ -28,22 +29,29 @@ def eval_genomes(genomes, config):
     nets = []
     genomes_forwarded = []
 
-    for genome_id, genome in genomes:
-        genome.fitness = 0
-        net = neat.nn.FeedForwardNetwork.create(genome, config)
-        # visualize.draw_net(config, genome, True)
-        nets.append(net)
-        genomes_forwarded.append(genome)
+    for weight_value in WEIGHT_VALUES:
+        print("Evaluating weight: ", weight_value)
 
-    play(nets, genomes_forwarded, len(nets))
+        for genome_id, genome in genomes:
+            genome.fitness = 0
+
+            for connection in genome.connections.items():
+                connection[1].weight = weight_value
+
+            net = neat.nn.FeedForwardNetwork.create(genome, config)
+            nets.append(net)
+            genomes_forwarded.append(genome)
+
+        play(nets, genomes_forwarded, len(nets))
 
 
 def play(nets, genomes, population):
-    print('creating agent')
+
+    # print('creating agent')
     agent = Agent(nets)
-    print('creating game')
+    # print('creating game')
     game = Game(population)
-    print('initializing game')
+    # print('initializing game')
 
     all_done = 0
     time_outs = []
@@ -79,9 +87,15 @@ def play(nets, genomes, population):
                     all_done += 1
 
         if all_done == population:
-            print("High score: {}\n".format(genomes[0].fitness))
             game.reset()
             break
+
+
+def play_generation(game, agent, start, end, time_outs, genomes, all_done):
+    local_done = 0
+
+
+
 
 def run(config_file, number_of_generations=100):
     # Load configuration.
@@ -101,13 +115,12 @@ def run(config_file, number_of_generations=100):
     # Run for up to 300 generations.
     winner = p.run(eval_genomes, number_of_generations)
 
-    save_path = "NEATmodel" + time.strftime("%Y%m%d-%H%M%S")
+    save_path = "WANNmodel" + time.strftime("%Y%m%d-%H%M%S")
 
     model_folder_path = '../neat-model/' + save_path
     if not os.path.exists(model_folder_path):
         os.makedirs(model_folder_path)
 
-    # Plot the results
     visualize.plot_stats(stats, False, False, "../neat-model/" + save_path + "/avg_fitness-generations.png")
 
     # Save winner
@@ -129,20 +142,10 @@ def run(config_file, number_of_generations=100):
 
         file.write("Output:")
         winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
-        file.write(str(winner_net.input_nodes))
-        file.write(str(winner_net.node_evals))
-        file.write(str(winner_net.output_nodes))
-        file.write(str(winner_net.values))
-
-        generation = range(len(stats.most_fit_genomes))
-        best_fitness = [c.fitness for c in stats.most_fit_genomes]
-        avg_fitness = np.array(stats.get_fitness_mean())
-
-        file.write("\n\n")
-
-        for gen in generation:
-            file.write("\nGeneration: {} - Best fitness: {} - Average fitness: {}".format(gen, best_fitness[gen], avg_fitness[gen]))
-
+        file.write('\n' + str(winner_net.input_nodes))
+        file.write('\n' + str(winner_net.node_evals))
+        file.write('\n' + str(winner_net.output_nodes))
+        file.write('\n' + str(winner_net.values))
 
 def replay(folder, vis=False, population=1):
     config_location = "../neat-model/" + folder + "/config"
@@ -165,6 +168,12 @@ def replay(folder, vis=False, population=1):
     # Call game with only the loaded genome
     eval_genomes(genomes, config)
 
+def run_cpu_tasks_in_parallel(tasks):
+    running_tasks = [Process(target=task) for task in tasks]
+    for running_task in running_tasks:
+        running_task.start()
+    for running_task in running_tasks:
+        running_task.join()
 
 if __name__ == '__main__':
     # Determine path to configuration file. This path manipulation is
@@ -173,12 +182,12 @@ if __name__ == '__main__':
     train_or_play = input("Do you want to train (1) or load a model and play (2): ")
     if train_or_play == "1":
         local_dir = os.path.dirname(__file__)
-        configName = input("Give the name of the config: ")
+        configName = input("Give the name of the config (default=configWANNs/configWANN): ")
         if configName == "":
-            configName = "config"
+            configName = "configWANNs/configWANN"
         config_path = os.path.join(local_dir, configName)
 
-        number_of_generations = input("Give the amount of generations you want to run for: ")
+        number_of_generations = input("Give the amount of generations you want to run for (default=100): ")
         if number_of_generations == "":
             number_of_generations = 100
 

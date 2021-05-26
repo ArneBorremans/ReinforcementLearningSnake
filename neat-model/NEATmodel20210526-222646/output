@@ -1,0 +1,267 @@
+NEATmodel20210526-222646
+Best genome:
+Key: 204086
+Fitness: 910
+Nodes:
+	0 DefaultNodeGene(key=0, bias=-2.5851209469691723, response=1.0, activation=sigmoid, aggregation=sum)
+	1 DefaultNodeGene(key=1, bias=-0.3445029810702859, response=1.0, activation=sigmoid, aggregation=sum)
+	2 DefaultNodeGene(key=2, bias=0.20523423243125005, response=1.0, activation=sigmoid, aggregation=sum)
+	3 DefaultNodeGene(key=3, bias=2.601096485945261, response=1.0, activation=sigmoid, aggregation=sum)
+	1991 DefaultNodeGene(key=1991, bias=3.3637013395276014, response=1.0, activation=sigmoid, aggregation=sum)
+	4051 DefaultNodeGene(key=4051, bias=-0.29884797060882795, response=1.0, activation=sigmoid, aggregation=sum)
+Connections:
+	DefaultConnectionGene(key=(-11, 0), weight=-8.239274194703576, enabled=True)
+	DefaultConnectionGene(key=(-11, 1), weight=10.031977143867763, enabled=True)
+	DefaultConnectionGene(key=(-11, 2), weight=3.9217040471488005, enabled=True)
+	DefaultConnectionGene(key=(-11, 3), weight=0.008014975866485308, enabled=False)
+	DefaultConnectionGene(key=(-10, 0), weight=7.534955336986213, enabled=True)
+	DefaultConnectionGene(key=(-10, 1), weight=-9.831459417012159, enabled=True)
+	DefaultConnectionGene(key=(-10, 2), weight=-0.724414104886907, enabled=True)
+	DefaultConnectionGene(key=(-10, 3), weight=0.5759821757969882, enabled=True)
+	DefaultConnectionGene(key=(-9, 1), weight=0.15257421128960477, enabled=True)
+	DefaultConnectionGene(key=(-9, 2), weight=-2.8387647048367306, enabled=False)
+	DefaultConnectionGene(key=(-9, 3), weight=7.16459223120077, enabled=True)
+	DefaultConnectionGene(key=(-8, 0), weight=-7.459900092470422, enabled=False)
+	DefaultConnectionGene(key=(-8, 1), weight=-0.82819181400511, enabled=False)
+	DefaultConnectionGene(key=(-8, 2), weight=23.188121552299712, enabled=True)
+	DefaultConnectionGene(key=(-8, 3), weight=-5.796162136414483, enabled=True)
+	DefaultConnectionGene(key=(-7, 0), weight=-4.448084066741492, enabled=False)
+	DefaultConnectionGene(key=(-7, 1), weight=0.044471966171264, enabled=False)
+	DefaultConnectionGene(key=(-7, 2), weight=-6.044505857632396, enabled=False)
+	DefaultConnectionGene(key=(-7, 3), weight=-11.104493494400089, enabled=False)
+	DefaultConnectionGene(key=(-6, 1), weight=4.51932414503047, enabled=False)
+	DefaultConnectionGene(key=(-6, 2), weight=6.106622162843182, enabled=True)
+	DefaultConnectionGene(key=(-6, 3), weight=2.3765000634829985, enabled=True)
+	DefaultConnectionGene(key=(-5, 0), weight=-10.089918058507124, enabled=True)
+	DefaultConnectionGene(key=(-5, 1), weight=3.80965459469939, enabled=False)
+	DefaultConnectionGene(key=(-5, 2), weight=-1.7233102916602587, enabled=False)
+	DefaultConnectionGene(key=(-5, 3), weight=10.243743216659965, enabled=False)
+	DefaultConnectionGene(key=(-5, 1991), weight=-8.120243761094356, enabled=False)
+	DefaultConnectionGene(key=(-4, 1), weight=-9.756981054702585, enabled=True)
+	DefaultConnectionGene(key=(-4, 3), weight=1.5972146083345837, enabled=True)
+	DefaultConnectionGene(key=(-4, 4051), weight=4.815471141059013, enabled=True)
+	DefaultConnectionGene(key=(-3, 0), weight=3.0845476510796357, enabled=True)
+	DefaultConnectionGene(key=(-3, 1), weight=-6.994014015844963, enabled=True)
+	DefaultConnectionGene(key=(-3, 2), weight=-6.310633835200554, enabled=True)
+	DefaultConnectionGene(key=(-3, 3), weight=8.376801250931525, enabled=True)
+	DefaultConnectionGene(key=(-2, 0), weight=3.953571623132539, enabled=True)
+	DefaultConnectionGene(key=(-2, 1), weight=-13.857911591488401, enabled=True)
+	DefaultConnectionGene(key=(-2, 2), weight=-6.6463318345066, enabled=False)
+	DefaultConnectionGene(key=(-1, 0), weight=14.056491475206995, enabled=True)
+	DefaultConnectionGene(key=(-1, 1), weight=-7.116801871144324, enabled=True)
+	DefaultConnectionGene(key=(-1, 2), weight=1.787525132309125, enabled=False)
+	DefaultConnectionGene(key=(-1, 3), weight=1.2035260892271147, enabled=False)
+	DefaultConnectionGene(key=(0, 1991), weight=6.2314328225862, enabled=False)
+	DefaultConnectionGene(key=(1, 1991), weight=-3.62825494366883, enabled=False)
+	DefaultConnectionGene(key=(1991, 3), weight=10.098935863765371, enabled=False)
+	DefaultConnectionGene(key=(4051, 3), weight=2.742231831576552, enabled=True)Output:[-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11][(0, <function sigmoid_activation at 0x000001F90C94D9D0>, <function sum_aggregation at 0x000001F90C95A820>, -2.5851209469691723, 1.0, [(-1, 14.056491475206995), (-2, 3.953571623132539), (-3, 3.0845476510796357), (-5, -10.089918058507124), (-10, 7.534955336986213), (-11, -8.239274194703576)]), (1, <function sigmoid_activation at 0x000001F90C94D9D0>, <function sum_aggregation at 0x000001F90C95A820>, -0.3445029810702859, 1.0, [(-1, -7.116801871144324), (-2, -13.857911591488401), (-3, -6.994014015844963), (-4, -9.756981054702585), (-9, 0.15257421128960477), (-10, -9.831459417012159), (-11, 10.031977143867763)]), (2, <function sigmoid_activation at 0x000001F90C94D9D0>, <function sum_aggregation at 0x000001F90C95A820>, 0.20523423243125005, 1.0, [(-3, -6.310633835200554), (-6, 6.106622162843182), (-8, 23.188121552299712), (-10, -0.724414104886907), (-11, 3.9217040471488005)]), (4051, <function sigmoid_activation at 0x000001F90C94D9D0>, <function sum_aggregation at 0x000001F90C95A820>, -0.29884797060882795, 1.0, [(-4, 4.815471141059013)]), (3, <function sigmoid_activation at 0x000001F90C94D9D0>, <function sum_aggregation at 0x000001F90C95A820>, 2.601096485945261, 1.0, [(-3, 8.376801250931525), (-4, 1.5972146083345837), (-6, 2.3765000634829985), (-8, -5.796162136414483), (-9, 7.16459223120077), (-10, 0.5759821757969882), (4051, 2.742231831576552)])][0, 1, 2, 3]{-1: 0.0, -2: 0.0, -3: 0.0, -4: 0.0, -5: 0.0, -6: 0.0, -7: 0.0, -8: 0.0, -9: 0.0, -10: 0.0, -11: 0.0, 0: 0.0, 1: 0.0, 2: 0.0, 3: 0.0}
+
+
+Generation: 0 - Best fitness: 10 - Average fitness: -9.31
+Generation: 1 - Best fitness: 30 - Average fitness: -9.08
+Generation: 2 - Best fitness: 30 - Average fitness: -8.6
+Generation: 3 - Best fitness: 30 - Average fitness: -8.12
+Generation: 4 - Best fitness: 40 - Average fitness: -7.29
+Generation: 5 - Best fitness: 40 - Average fitness: -6.04
+Generation: 6 - Best fitness: 270 - Average fitness: -4.61
+Generation: 7 - Best fitness: 410 - Average fitness: -4.22
+Generation: 8 - Best fitness: 110 - Average fitness: -3.38
+Generation: 9 - Best fitness: 310 - Average fitness: -2.59
+Generation: 10 - Best fitness: 600 - Average fitness: -2.33
+Generation: 11 - Best fitness: 240 - Average fitness: -1.21
+Generation: 12 - Best fitness: 120 - Average fitness: -0.88
+Generation: 13 - Best fitness: 460 - Average fitness: 1.18
+Generation: 14 - Best fitness: 280 - Average fitness: 2.26
+Generation: 15 - Best fitness: 330 - Average fitness: 3.55
+Generation: 16 - Best fitness: 350 - Average fitness: 5.66
+Generation: 17 - Best fitness: 400 - Average fitness: 8.1
+Generation: 18 - Best fitness: 380 - Average fitness: 13.53
+Generation: 19 - Best fitness: 510 - Average fitness: 17.27
+Generation: 20 - Best fitness: 510 - Average fitness: 24.27
+Generation: 21 - Best fitness: 460 - Average fitness: 22.68
+Generation: 22 - Best fitness: 430 - Average fitness: 29.5
+Generation: 23 - Best fitness: 440 - Average fitness: 35.21
+Generation: 24 - Best fitness: 450 - Average fitness: 42.13
+Generation: 25 - Best fitness: 610 - Average fitness: 42.58
+Generation: 26 - Best fitness: 500 - Average fitness: 46.81
+Generation: 27 - Best fitness: 460 - Average fitness: 56.85
+Generation: 28 - Best fitness: 510 - Average fitness: 65.62
+Generation: 29 - Best fitness: 520 - Average fitness: 60.17
+Generation: 30 - Best fitness: 450 - Average fitness: 68.34
+Generation: 31 - Best fitness: 630 - Average fitness: 66.22
+Generation: 32 - Best fitness: 500 - Average fitness: 71.34
+Generation: 33 - Best fitness: 590 - Average fitness: 77.82
+Generation: 34 - Best fitness: 530 - Average fitness: 87.08
+Generation: 35 - Best fitness: 690 - Average fitness: 89.53
+Generation: 36 - Best fitness: 570 - Average fitness: 97.02
+Generation: 37 - Best fitness: 580 - Average fitness: 109.8
+Generation: 38 - Best fitness: 590 - Average fitness: 108.4
+Generation: 39 - Best fitness: 690 - Average fitness: 105.41
+Generation: 40 - Best fitness: 560 - Average fitness: 116.04
+Generation: 41 - Best fitness: 540 - Average fitness: 116.37
+Generation: 42 - Best fitness: 550 - Average fitness: 120.07
+Generation: 43 - Best fitness: 740 - Average fitness: 129.48
+Generation: 44 - Best fitness: 650 - Average fitness: 126.83
+Generation: 45 - Best fitness: 600 - Average fitness: 133.3
+Generation: 46 - Best fitness: 600 - Average fitness: 130.67
+Generation: 47 - Best fitness: 530 - Average fitness: 125.46
+Generation: 48 - Best fitness: 530 - Average fitness: 131.66
+Generation: 49 - Best fitness: 620 - Average fitness: 130.67
+Generation: 50 - Best fitness: 570 - Average fitness: 139.66966966966967
+Generation: 51 - Best fitness: 540 - Average fitness: 132.16216216216216
+Generation: 52 - Best fitness: 560 - Average fitness: 136.74674674674674
+Generation: 53 - Best fitness: 600 - Average fitness: 135.05505505505505
+Generation: 54 - Best fitness: 580 - Average fitness: 137.33
+Generation: 55 - Best fitness: 560 - Average fitness: 138.72
+Generation: 56 - Best fitness: 550 - Average fitness: 138.24
+Generation: 57 - Best fitness: 550 - Average fitness: 140.96
+Generation: 58 - Best fitness: 600 - Average fitness: 138.92107892107893
+Generation: 59 - Best fitness: 540 - Average fitness: 142.37
+Generation: 60 - Best fitness: 650 - Average fitness: 137.73
+Generation: 61 - Best fitness: 580 - Average fitness: 144.53
+Generation: 62 - Best fitness: 700 - Average fitness: 135.26526526526527
+Generation: 63 - Best fitness: 510 - Average fitness: 133.17317317317318
+Generation: 64 - Best fitness: 620 - Average fitness: 149.01
+Generation: 65 - Best fitness: 750 - Average fitness: 145.14514514514514
+Generation: 66 - Best fitness: 530 - Average fitness: 136.24624624624624
+Generation: 67 - Best fitness: 570 - Average fitness: 145.41
+Generation: 68 - Best fitness: 620 - Average fitness: 152.27
+Generation: 69 - Best fitness: 650 - Average fitness: 146.8031968031968
+Generation: 70 - Best fitness: 530 - Average fitness: 147.24
+Generation: 71 - Best fitness: 620 - Average fitness: 146.45
+Generation: 72 - Best fitness: 550 - Average fitness: 144.4055944055944
+Generation: 73 - Best fitness: 550 - Average fitness: 136.38361638361638
+Generation: 74 - Best fitness: 680 - Average fitness: 144.02402402402402
+Generation: 75 - Best fitness: 580 - Average fitness: 150.95095095095095
+Generation: 76 - Best fitness: 670 - Average fitness: 139.23
+Generation: 77 - Best fitness: 600 - Average fitness: 150.04
+Generation: 78 - Best fitness: 600 - Average fitness: 146.01
+Generation: 79 - Best fitness: 580 - Average fitness: 148.51
+Generation: 80 - Best fitness: 560 - Average fitness: 154.73526473526474
+Generation: 81 - Best fitness: 530 - Average fitness: 159.01
+Generation: 82 - Best fitness: 600 - Average fitness: 156.71671671671672
+Generation: 83 - Best fitness: 640 - Average fitness: 149.25925925925927
+Generation: 84 - Best fitness: 600 - Average fitness: 140.06006006006007
+Generation: 85 - Best fitness: 630 - Average fitness: 148.1
+Generation: 86 - Best fitness: 600 - Average fitness: 155.52
+Generation: 87 - Best fitness: 570 - Average fitness: 143.77
+Generation: 88 - Best fitness: 570 - Average fitness: 139.1
+Generation: 89 - Best fitness: 620 - Average fitness: 136.92692692692694
+Generation: 90 - Best fitness: 600 - Average fitness: 133.55
+Generation: 91 - Best fitness: 620 - Average fitness: 138.49150849150848
+Generation: 92 - Best fitness: 590 - Average fitness: 137.63763763763762
+Generation: 93 - Best fitness: 600 - Average fitness: 151.53
+Generation: 94 - Best fitness: 580 - Average fitness: 142.34
+Generation: 95 - Best fitness: 560 - Average fitness: 145.57557557557558
+Generation: 96 - Best fitness: 630 - Average fitness: 147.42
+Generation: 97 - Best fitness: 550 - Average fitness: 142.44244244244246
+Generation: 98 - Best fitness: 580 - Average fitness: 143.98601398601397
+Generation: 99 - Best fitness: 580 - Average fitness: 144.49101796407186
+Generation: 100 - Best fitness: 560 - Average fitness: 146.03396603396604
+Generation: 101 - Best fitness: 630 - Average fitness: 152.1121121121121
+Generation: 102 - Best fitness: 630 - Average fitness: 144.25574425574425
+Generation: 103 - Best fitness: 500 - Average fitness: 148.75124875124874
+Generation: 104 - Best fitness: 590 - Average fitness: 146.22
+Generation: 105 - Best fitness: 560 - Average fitness: 142.3
+Generation: 106 - Best fitness: 790 - Average fitness: 142.3176823176823
+Generation: 107 - Best fitness: 590 - Average fitness: 150.14
+Generation: 108 - Best fitness: 580 - Average fitness: 148.27
+Generation: 109 - Best fitness: 650 - Average fitness: 144.91
+Generation: 110 - Best fitness: 710 - Average fitness: 144.53453453453454
+Generation: 111 - Best fitness: 610 - Average fitness: 148.71871871871872
+Generation: 112 - Best fitness: 620 - Average fitness: 149.83
+Generation: 113 - Best fitness: 680 - Average fitness: 154.9050949050949
+Generation: 114 - Best fitness: 700 - Average fitness: 156.3136863136863
+Generation: 115 - Best fitness: 590 - Average fitness: 149.84984984984985
+Generation: 116 - Best fitness: 590 - Average fitness: 151.03103103103103
+Generation: 117 - Best fitness: 650 - Average fitness: 149.86
+Generation: 118 - Best fitness: 650 - Average fitness: 152.99401197604791
+Generation: 119 - Best fitness: 560 - Average fitness: 150.48
+Generation: 120 - Best fitness: 610 - Average fitness: 159.5004995004995
+Generation: 121 - Best fitness: 620 - Average fitness: 155.56443556443557
+Generation: 122 - Best fitness: 610 - Average fitness: 150.57
+Generation: 123 - Best fitness: 760 - Average fitness: 153.27655310621242
+Generation: 124 - Best fitness: 620 - Average fitness: 159.15915915915915
+Generation: 125 - Best fitness: 710 - Average fitness: 157.1828171828172
+Generation: 126 - Best fitness: 770 - Average fitness: 165.55444555444555
+Generation: 127 - Best fitness: 580 - Average fitness: 154.4955044955045
+Generation: 128 - Best fitness: 660 - Average fitness: 155.3807615230461
+Generation: 129 - Best fitness: 580 - Average fitness: 153.92785571142284
+Generation: 130 - Best fitness: 650 - Average fitness: 153.1494483450351
+Generation: 131 - Best fitness: 650 - Average fitness: 158.27827827827826
+Generation: 132 - Best fitness: 680 - Average fitness: 153.06613226452905
+Generation: 133 - Best fitness: 650 - Average fitness: 153.33
+Generation: 134 - Best fitness: 670 - Average fitness: 154.3843843843844
+Generation: 135 - Best fitness: 620 - Average fitness: 152.4975024975025
+Generation: 136 - Best fitness: 630 - Average fitness: 152.4451097804391
+Generation: 137 - Best fitness: 600 - Average fitness: 153.2
+Generation: 138 - Best fitness: 650 - Average fitness: 148.2064128256513
+Generation: 139 - Best fitness: 610 - Average fitness: 154.62462462462463
+Generation: 140 - Best fitness: 560 - Average fitness: 144.8048048048048
+Generation: 141 - Best fitness: 580 - Average fitness: 159.83
+Generation: 142 - Best fitness: 570 - Average fitness: 157.4003984063745
+Generation: 143 - Best fitness: 580 - Average fitness: 146.27490039840637
+Generation: 144 - Best fitness: 650 - Average fitness: 150.31968031968032
+Generation: 145 - Best fitness: 600 - Average fitness: 152.59
+Generation: 146 - Best fitness: 750 - Average fitness: 153.02302302302303
+Generation: 147 - Best fitness: 530 - Average fitness: 145.22522522522522
+Generation: 148 - Best fitness: 610 - Average fitness: 154.52
+Generation: 149 - Best fitness: 690 - Average fitness: 158.97205588822357
+Generation: 150 - Best fitness: 660 - Average fitness: 151.12662013958126
+Generation: 151 - Best fitness: 550 - Average fitness: 154.96993987975952
+Generation: 152 - Best fitness: 600 - Average fitness: 153.8376753507014
+Generation: 153 - Best fitness: 650 - Average fitness: 164.98498498498498
+Generation: 154 - Best fitness: 600 - Average fitness: 147.43512974051896
+Generation: 155 - Best fitness: 630 - Average fitness: 155.95404595404597
+Generation: 156 - Best fitness: 670 - Average fitness: 156.5
+Generation: 157 - Best fitness: 570 - Average fitness: 153.90781563126254
+Generation: 158 - Best fitness: 640 - Average fitness: 152.002002002002
+Generation: 159 - Best fitness: 590 - Average fitness: 152.19219219219218
+Generation: 160 - Best fitness: 620 - Average fitness: 154.80961923847696
+Generation: 161 - Best fitness: 600 - Average fitness: 147.35264735264735
+Generation: 162 - Best fitness: 580 - Average fitness: 147.09
+Generation: 163 - Best fitness: 770 - Average fitness: 157.1943887775551
+Generation: 164 - Best fitness: 680 - Average fitness: 158.92215568862275
+Generation: 165 - Best fitness: 590 - Average fitness: 152.38
+Generation: 166 - Best fitness: 600 - Average fitness: 153.22709163346613
+Generation: 167 - Best fitness: 660 - Average fitness: 152.45490981963928
+Generation: 168 - Best fitness: 570 - Average fitness: 161.04
+Generation: 169 - Best fitness: 590 - Average fitness: 152.24775224775226
+Generation: 170 - Best fitness: 660 - Average fitness: 161.6083916083916
+Generation: 171 - Best fitness: 620 - Average fitness: 159.3006993006993
+Generation: 172 - Best fitness: 680 - Average fitness: 156.0418743768694
+Generation: 173 - Best fitness: 720 - Average fitness: 163.07385229540918
+Generation: 174 - Best fitness: 620 - Average fitness: 163.36
+Generation: 175 - Best fitness: 640 - Average fitness: 155.94188376753507
+Generation: 176 - Best fitness: 600 - Average fitness: 161.72827172827172
+Generation: 177 - Best fitness: 580 - Average fitness: 156.94305694305694
+Generation: 178 - Best fitness: 580 - Average fitness: 161.74650698602795
+Generation: 179 - Best fitness: 560 - Average fitness: 157.38
+Generation: 180 - Best fitness: 870 - Average fitness: 154.7
+Generation: 181 - Best fitness: 620 - Average fitness: 159.17082917082917
+Generation: 182 - Best fitness: 600 - Average fitness: 153.2767232767233
+Generation: 183 - Best fitness: 640 - Average fitness: 161.25874125874125
+Generation: 184 - Best fitness: 600 - Average fitness: 157.18
+Generation: 185 - Best fitness: 740 - Average fitness: 171.35270541082164
+Generation: 186 - Best fitness: 780 - Average fitness: 164.53546453546454
+Generation: 187 - Best fitness: 640 - Average fitness: 169.66966966966967
+Generation: 188 - Best fitness: 620 - Average fitness: 168.66
+Generation: 189 - Best fitness: 690 - Average fitness: 160.64
+Generation: 190 - Best fitness: 560 - Average fitness: 160.48
+Generation: 191 - Best fitness: 660 - Average fitness: 168.92892892892894
+Generation: 192 - Best fitness: 680 - Average fitness: 169.79
+Generation: 193 - Best fitness: 590 - Average fitness: 171.2987012987013
+Generation: 194 - Best fitness: 870 - Average fitness: 175.3153153153153
+Generation: 195 - Best fitness: 660 - Average fitness: 173.87612387612387
+Generation: 196 - Best fitness: 700 - Average fitness: 174.06406406406407
+Generation: 197 - Best fitness: 830 - Average fitness: 184.83
+Generation: 198 - Best fitness: 600 - Average fitness: 170.0
+Generation: 199 - Best fitness: 710 - Average fitness: 177.87787787787786
+Generation: 200 - Best fitness: 640 - Average fitness: 174.1041041041041
+Generation: 201 - Best fitness: 720 - Average fitness: 167.0970970970971
+Generation: 202 - Best fitness: 630 - Average fitness: 173.92392392392392
+Generation: 203 - Best fitness: 710 - Average fitness: 177.28
+Generation: 204 - Best fitness: 730 - Average fitness: 172.2977022977023
+Generation: 205 - Best fitness: 830 - Average fitness: 183.38
+Generation: 206 - Best fitness: 860 - Average fitness: 178.4984984984985
+Generation: 207 - Best fitness: 910 - Average fitness: 179.9099099099099

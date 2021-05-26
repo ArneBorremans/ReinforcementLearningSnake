@@ -26,25 +26,20 @@ class Agent:
 
 
 def eval_genomes(genomes, config):
-    nets = []
-    genomes_forwarded = []
-
     for weight_value in WEIGHT_VALUES:
-        show_first = True
+        nets = []
+        genomes_forwarded = []
         print("Evaluating weight: ", weight_value)
 
         for genome_id, genome in genomes:
             genome.fitness = 0
 
-            if show_first:
-                for connection in genome.connections.items():
-                    connection[1].weight = weight_value
+            for connection in genome.connections.items():
+                connection[1].weight = weight_value
 
             net = neat.nn.FeedForwardNetwork.create(genome, config)
             nets.append(net)
             genomes_forwarded.append(genome)
-            if show_first:
-                show_first = False
 
         play(nets, genomes_forwarded, len(nets))
 
