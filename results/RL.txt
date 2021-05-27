@@ -1,1 +1,5 @@
+Trained:
 Average reward: 567.48 - Record: 690
+
+Untrained:
+Average reward: -9.8 - Record: 5

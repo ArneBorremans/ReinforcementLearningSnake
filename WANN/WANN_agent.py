@@ -44,6 +44,25 @@ def eval_genomes(genomes, config):
         play(nets, genomes_forwarded, len(nets))
 
 
+def eval_genomes_single_weight(genomes, config, weight_value):
+    nets = []
+    genomes_forwarded = []
+    print("Evaluating weight: ", weight_value)
+
+    for genome_id, genome in genomes:
+        genome.fitness = 0
+
+        for connection in genome.connections.items():
+            connection[1].weight = weight_value
+
+        net = neat.nn.FeedForwardNetwork.create(genome, config)
+        nets.append(net)
+        genomes_forwarded.append(genome)
+        print(net.node_evals)
+
+    play(nets, genomes_forwarded, len(nets))
+
+
 def play(nets, genomes, population):
 
     # print('creating agent')
@@ -147,7 +166,8 @@ def run(config_file, number_of_generations=100):
         file.write('\n' + str(winner_net.output_nodes))
         file.write('\n' + str(winner_net.values))
 
-def replay(folder, vis=False, population=1):
+
+def replay(folder, weight_value,vis=False, population=1):
     config_location = "../neat-model/" + folder + "/config"
     winner_location = "../neat-model/" + folder + "/winner.pkl"
 
@@ -166,7 +186,9 @@ def replay(folder, vis=False, population=1):
         visualize.draw_net(config, genome, True)
 
     # Call game with only the loaded genome
-    eval_genomes(genomes, config)
+    eval_genomes_single_weight(genomes, config, weight_value)
+
+    return genome.fitness
 
 def run_cpu_tasks_in_parallel(tasks):
     running_tasks = [Process(target=task) for task in tasks]
@@ -194,6 +216,19 @@ if __name__ == '__main__':
         run(config_path, int(number_of_generations))
     elif train_or_play == "2":
         folder = input("Give the folder where the model is stored: ")
+        weight = input("Give the desired weight value: ")
         counter = 0
-        while True:
-            replay(folder)
+        total_fitness = 0
+        highest_fitness = 0
+        games = 500
+        for i in range(0, games):
+            fitness = replay(folder, float(weight))
+            total_fitness += fitness
+            if fitness > highest_fitness:
+                highest_fitness = fitness
+
+        average_fitness = total_fitness / games
+
+        with open("../results/WANN.txt", "a") as file:
+            file.write('Weight: {} - Average reward: {} - Record: {}'.format(weight, average_fitness, highest_fitness))
+            file.close()

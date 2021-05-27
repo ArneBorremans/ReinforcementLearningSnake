@@ -1,0 +1,8 @@
+Weight: 2 - Average reward: 306.82 - Record: 860
+Weight: -2 - Average reward: 499.0 - Record: 1180
+Weight: 1 - Average reward: 314.44 - Record: 840
+Weight: -1 - Average reward: -9.74 - Record: 0
+Weight: -0.5 - Average reward: -9.72 - Record: 0
+Weight: 0.5 - Average reward: 318.56 - Record: 920
+Weight: -3 - Average reward: 275.1 - Record: 890
+Weight: 3 - Average reward: 308.72 - Record: 1030Weight: -2 - Average reward: 260.0 - Record: 260

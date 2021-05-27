@@ -170,6 +170,7 @@ def replay(folder, vis=False, population=1):
     # Call game with only the loaded genome
     eval_genomes(genomes, config)
 
+    return genome.fitness
 
 if __name__ == '__main__':
     # Determine path to configuration file. This path manipulation is
@@ -191,5 +192,17 @@ if __name__ == '__main__':
     elif train_or_play == "2":
         folder = input("Give the folder where the model is stored: ")
         counter = 0
-        while True:
-            replay(folder)
+        total_fitness = 0
+        highest_fitness = 0
+        games = 500
+        for i in range(0, games):
+            fitness = replay(folder)
+            total_fitness += fitness
+            if fitness > highest_fitness:
+                highest_fitness = fitness
+        
+        average_fitness = total_fitness / games
+        
+        with open("../results/NEAT.txt", "a") as file:
+            file.write('Average reward: {} - Record: {}'.format(average_fitness, highest_fitness))
+            file.close()
