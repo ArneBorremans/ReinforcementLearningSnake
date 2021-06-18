@@ -94,12 +94,6 @@ def run(config_file, number_of_generations=100):
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          config_file)
 
-    save_path = "NEATmodel" + time.strftime("%Y%m%d-%H%M%S")
-
-    model_folder_path = '../neat-model/' + save_path
-    if not os.path.exists(model_folder_path):
-        os.makedirs(model_folder_path)
-
     # Create the population, which is the top-level object for a NEAT run.
     p = neat.Population(config)
 
@@ -111,6 +105,12 @@ def run(config_file, number_of_generations=100):
 
     # Run for up to 300 generations.
     winner = p.run(eval_genomes, number_of_generations)
+
+    save_path = "NEATmodel" + time.strftime("%Y%m%d-%H%M%S")
+
+    model_folder_path = '../neat-model/' + save_path
+    if not os.path.exists(model_folder_path):
+        os.makedirs(model_folder_path)
 
     # Plot the results
     visualize.plot_stats(stats, False, False, "../neat-model/" + save_path + "/avg_fitness-generations.png")

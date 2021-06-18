@@ -6,7 +6,7 @@ import os
 import visualize
 
 from multiprocessing import Process
-from Snake_Game_Multiple_NoGUI_Parallel import Game
+from Snake_Game_Multiple_NoGUI import Game
 
 WEIGHT_VALUES = [-2, -1, -0.5, 0.5, 1, 2]
 

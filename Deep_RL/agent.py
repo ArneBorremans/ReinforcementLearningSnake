@@ -285,4 +285,4 @@ if __name__ == '__main__':
         train(model_layers, n_games)
     elif train_or_play == "2":
         folder = input("Give the folder where the model is stored: ")
-        loadModelAndPlay(model_layers, "D:\Documenten\PythonPrograms\Snake-Reinforcement-Learning\model\{}\model.pth".format(folder))
+        loadModelAndPlay(model_layers, "../model/{}/model.pth".format(folder))

@@ -97,7 +97,6 @@ def play(games):
             state_new = agent.get_state(game)
 
             if done:
-                # train long memory, plot result
                 gameLength = game.gameLength
                 totalReward = game.total_reward
                 game.reset()

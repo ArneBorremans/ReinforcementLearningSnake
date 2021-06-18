@@ -5,9 +5,8 @@ import neat
 import os
 import visualize
 import numpy as np
-from joblib import Parallel, delayed
 
-from Snake_Game_Multiple_NoGUI_Parallel import Game
+from Snake_Game_Multiple_NoGUI import Game
 
 class Agent:
     def __init__(self, nets):
